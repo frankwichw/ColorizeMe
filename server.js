@@ -9,18 +9,9 @@ const PORT = process.env.PORT || 3001;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // Serve up static assets
-app.use(express.static("client/build"));
+app.use(express.static("client/public"));
 // Add routes, both API and view
 app.use(routes);
-
-// Use express.static to serve the public folder as a static directory
-app.use(express.static("public"));
-
-// requiring handlebars
-var exphbs = require("express-handlebars");
-// user handlebars to default to main layout
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/colorizeMeDb");
