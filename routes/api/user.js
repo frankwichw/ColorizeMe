@@ -3,14 +3,15 @@ const userController = require("../../controllers/userController.js");
 const colorSchemeController = require("../../controllers/colorSchemeController.js");
 
 // Matches with "/api/books"
-router.route("/api/colorschemes")
+router.route("/api/layout1")
     .get(colorSchemeController.findColorSchemes);
 
 // Matches with "/api/books/:id"
-router.route("/api/colorschemes/:id")
-  .get(booksController.findById)
-  .put(booksController.update)
-  .delete(booksController.remove);
+router.route("/api/layout1/:id")
+  .get(colorSchemeController.findById)
+  .put(colorSchemeController.update)
+  .post(colorSchemeController.create)
+  .delete(colorSchemeController.remove);
 
 
 module.exports = router;

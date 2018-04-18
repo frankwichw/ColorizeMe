@@ -1,8 +1,8 @@
-// color scheme model
+// color scheme layout 1 model
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const colorSchema = new Schema({
+const Layout1Schema = new Schema({
   userId: {
       type: String,
       required: true
@@ -10,9 +10,10 @@ const colorSchema = new Schema({
   title: { 
       type: String, 
       required: true 
-  }
+  },
+  
 });
 
-const ColorScheme = mongoose.model("ColorScheme", colorSchema);
+const Layout1 = mongoose.model("Layout1", Layout1Schema);
 
-module.exports = ColorScheme;
+module.exports = Layout1;

@@ -7,10 +7,10 @@ const userSchema = new Schema({
     type: String, 
     required: true 
   },
-  colorSchemes: [
+  Layout1Schemes: [
       {
         type: Schema.Types.ObjectId,
-        ref: "ColorScheme"
+        ref: "Layout1"
       }
   ]
 });
