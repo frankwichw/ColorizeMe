@@ -6,6 +6,8 @@ import Layout1 from "./pages/Layout1";
 import Layout2 from "./pages/Layout2";
 import FourOhFour from "./pages/FourOhFour";
 import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
+import CSS from "./App.css";
 
 const App = () => (
   <Router>
@@ -18,6 +20,7 @@ const App = () => (
         <Route exact path="/layout2" component={Layout2} />
         <Route component={FourOhFour} />
       </Switch>
+      <Footer />
     </div>
   </Router>
 );
