@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import CSS from "./Navigation.css";
 
 const Navigation = () => (
     <nav className="navbar navbar-default navbar-fixed-top">

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import CSS from "./Footer.css";
 
 const Footer = () => (
     <footer className="footer navbar navbar-default navbar-fixed-bottom">
