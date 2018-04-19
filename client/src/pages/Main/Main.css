@@ -13,6 +13,11 @@ body {
     font-size: 1.6em;
 }
 
+.login-button {
+    background: none;
+    border: none;
+}
+
 a.login:link {
     text-decoration:none;
     color: #fff;
