@@ -13,7 +13,12 @@ app.use(bodyParser.json());
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/colorizeMeDb");
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/colorizeMeDb";
+
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI, {
+  useMongoClient: true
+});
 
 // Start the API server
 app.listen(PORT, function() {
