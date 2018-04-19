@@ -27,9 +27,33 @@ footer {
     color: #000;
 }
 
+.glyphicon {
+    color: #686868;
+    display: inline;
+    float: right;
+    margin-top: 22px;
+}
+
 .list-items {
     margin-top: 18px;
     padding-right: 10px;
+}
+/* 
+.nav-color {
+    margin-top: 15px;
+    margin-right: 15px;
+    width: 100px;
+} */
+
+.nav-color {
+    position: fixed;
+    z-index: 1;
+    top: 400;
+    right: 600;
+}
+
+.hide {
+    display: none;
 }
 
 /* On small screens, set height to 'auto' for sidenav and grid */

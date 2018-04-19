@@ -28,6 +28,7 @@ class Main extends Component {
         token: res.Zi.access_token,
         provider_pic: res.w3.Paa
       };
+      console.log(postData);
     }
 
   if (postData) {

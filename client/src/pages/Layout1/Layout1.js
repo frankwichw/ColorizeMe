@@ -2,18 +2,91 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
 import CSS from "./Layout1.css";
+import { ChromePicker, SketchPicker } from 'react-color';
 
 class Layout1 extends Component {
   state = {
     background: "#fff",
+    backgroundHidden: true,
     navbar: "#f1f1f1",
+    navbarHidden: true,
     right_sidebar: "#f1f1f1",
-    left_sidebar: "#f1f1f1"
+    rightSidebarHidden: true,
+    left_sidebar: "#f1f1f1",
+    leftSidebarHidden: true
   };
 
+  handleNavClick = event => {
+    console.log(event.target);
+    if (this.state.navbarHidden){
+      this.setState({
+        navbarHidden: false
+      })
+    } else {
+      this.setState({
+        navbarHidden: true
+      })
+    }
+
+  };
+
+  handleInputChange = event => {
+    console.log(event);
+    const { name, value } = event.target;
+    this.setState({
+      [name]: "#" + value
+    });
+  };
+
+  handleChangeNavbar = (color, event) => {
+    // const { name, color.hex } = event.target;
+    this.setState({ navbar: color.hex });
+  };
+
+  handleChangeBackground = (color, event) => {
+    // const { name, color.hex } = event.target;
+    this.setState({ background: color.hex });
+  };
+
+  handleChangeRightSidebar = (color, event) => {
+    // const { name, color.hex } = event.target;
+    this.setState({ right_sidebar: color.hex });
+  };
+
+  handleChangeLeftSidebar = (color, event) => {
+    // const { name, color.hex } = event.target;
+    this.setState({ left_sidebar: color.hex });
+  };
+  
+  
   render() {
+
     return (
-      <div style={{backgroundColor: this.state.background}}>
+    <div style={{backgroundColor: this.state.background}}>
+    <ChromePicker
+      className={this.state.navbarHidden ? "nav-color hide" : "nav-color"}
+      name="navbar"
+      hide-value={this.state.navbarHidden}
+      onChange={ this.handleChangeNavbar } 
+    />
+    <SketchPicker
+      className={this.state.backgroundHidden ? "nav-color hide" : "nav-color"}
+      name="background"
+      hide-value={this.state.backgroundHidden}
+      onChange={ this.handleChangeBackground } 
+    />
+    <SketchPicker
+      className={this.state.rightSidebarHidden ? "nav-color hide" : "nav-color"}
+      name="right_sidebar"
+      hide-value={this.state.rightSidebarHidden}
+      onChange={ this.handleChangeRightSidebar } 
+    />
+    <SketchPicker
+      className={this.state.leftSidebarHidden ? "nav-color hide" : "nav-color"}
+      name="left_sidebar"
+      hide-value={this.state.leftSidebarHidden}
+      onChange={ this.handleChangeLeftSidebar } 
+    />
     <nav className="navbar layout-nav" style={{backgroundColor: this.state.navbar}}>
       <div className="container-fluid">
         <div className="navbar-header">
@@ -23,6 +96,13 @@ class Layout1 extends Component {
             <span className="icon-bar"></span>                        
           </button>
           <span className="navbar-brand black-text">Logo</span>
+          {/* <span style={{color: "#000"}}>Color:</span> 
+          <input 
+            className="jscolor nav-color" 
+            value={this.state.navbar}
+            onChange={this.handleInputChange}
+            name="navbar"
+          /> */}
         </div>
         <div className="collapse navbar-collapse" id="myNavbar">
           <ul className="nav navbar-nav black-text">
@@ -31,7 +111,8 @@ class Layout1 extends Component {
             <li className="list-items">Projects</li>
             <li className="list-items">Contact</li>
           </ul>
- 
+          <span className="glyphicon glyphicon-bell"
+          onClick={this.handleNavClick}></span>
         </div>
       </div>
     </nav>
