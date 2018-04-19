@@ -5,6 +5,7 @@ import {PostData} from '../../utils/restAPI.js';
 import {Redirect} from 'react-router-dom';
 import API from "../../utils/API";
 import CSS from "./Main.css";
+import keys from "./keys.js";
 
 class Main extends Component {
   constructor(props) {
@@ -53,7 +54,7 @@ class Main extends Component {
       <div className="jumbotron">
       <h2 className="auth-user"><a href="#" className="login">
       <GoogleLogin
-        clientId="Your Google ID"
+        clientId={keys.google.clientID}
         buttonText="Get Started with Google+"
         className="login-button"
         onSuccess={responseGoogle}

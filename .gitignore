@@ -1,5 +1,5 @@
 /node_modules
-client/src/utils/keys.js
+client/src/pages/main/keys.js
 
 # testing
 /coverage
