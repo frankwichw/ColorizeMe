@@ -1,3 +1,7 @@
+.wrapper {
+    width: 100%;
+}
+
 /* Remove the navbar's default margin-bottom and rounded borders */ 
 .layout-nav {
     margin-bottom: 0;
@@ -56,7 +60,7 @@ a.hover:hover {
 .nav-color {
     position: fixed;
     z-index: 1;
-    top: 400;
+    bottom: 300;
     right: 600;
 }
 

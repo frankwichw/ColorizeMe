@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
 import CSS from "./Layout1.css";
-import { ChromePicker, SketchPicker } from 'react-color';
+import { SliderPicker, SketchPicker } from 'react-color';
 
 class Layout1 extends Component {
   state = {
@@ -106,13 +106,9 @@ class Layout1 extends Component {
   render() {
 
     return (
-    <div style={{backgroundColor: this.state.background}}>
-    <ChromePicker
-      className={this.state.navbarHidden ? "nav-color hide" : "nav-color"}
-      name="navbar"
-      hide-value={this.state.navbarHidden}
-      onChange={ this.handleChangeNavbar } 
-    />
+    <div className="wrapper" style={{backgroundColor: this.state.background}}>
+
+
     <SketchPicker
       className={this.state.backgroundHidden ? "nav-color hide" : "nav-color"}
       name="background"
@@ -164,6 +160,12 @@ class Layout1 extends Component {
           >
           Back to Profile
           </button>
+          <SliderPicker
+      className={this.state.navbarHidden ? "nav-color hide" : "nav-color"}
+      name="navbar"
+      hide-value={this.state.navbarHidden}
+      onChange={ this.handleChangeNavbar } 
+    />
           <a href="#" className="hover"><span className="glyphicon glyphicon-nav glyphicon-bell"
           onClick={this.handleNavClick}></span></a>
         </div>
