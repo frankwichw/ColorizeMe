@@ -16,6 +16,12 @@ class Layout1 extends Component {
     leftSidebarHidden: true
   };
 
+  handleGetCSS = event => {
+    event.preventDefault();
+    const css = ".background {\nbackground-color: " + this.state.background + ";\n}\n.navbar {\nbackground-color: " + this.state.navbar + ";\n}\n.left-sidebar {\nbackground-color: " + this.state.left_sidebar + ";\n}\n.right-sidebar {\nbackground-color: " + this.state.right_sidebar + ";\n}";
+    console.log(css);
+  };
+
   handleNavClick = event => {
     console.log(event.target);
     if (this.state.navbarHidden){
@@ -142,7 +148,22 @@ class Layout1 extends Component {
             <li className="list-items">Projects</li>
             <li className="list-items">Contact</li>
           </ul>
-          <button className="nav-button">Save</button> <button className="nav-button">CSS</button> <button className="nav-button">Back to Profile</button>
+          <button 
+            className="nav-button"
+          >
+          Save
+          </button> 
+          <button 
+            className="nav-button"
+            onClick={this.handleGetCSS}
+          >
+          CSS
+          </button> 
+          <button 
+            className="nav-button"
+          >
+          Back to Profile
+          </button>
           <a href="#" className="hover"><span className="glyphicon glyphicon-nav glyphicon-bell"
           onClick={this.handleNavClick}></span></a>
         </div>
