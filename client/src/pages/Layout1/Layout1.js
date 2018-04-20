@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import API from "../../utils/API";
 import CSS from "./Layout1.css";
 import { SliderPicker, SketchPicker } from 'react-color';
+import { Modal, Button } from 'react-bootstrap';
 
 class Layout1 extends Component {
   state = {
+    displayColorPicker: true,
     background: "#fff",
     backgroundHidden: true,
     navbar: "#f1f1f1",
@@ -13,7 +15,16 @@ class Layout1 extends Component {
     right_sidebar: "#f1f1f1",
     rightSidebarHidden: true,
     left_sidebar: "#f1f1f1",
-    leftSidebarHidden: true
+    leftSidebarHidden: true,
+    show: false
+  };
+
+  handleClose = () => {
+    this.setState({ show: false });
+  };
+
+  handleShow = () => {
+    this.setState({ show: true });
   };
 
   handleGetCSS = event => {
@@ -108,6 +119,18 @@ class Layout1 extends Component {
     return (
     <div className="wrapper" style={{backgroundColor: this.state.background}}>
 
+        <Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h4>Text in a modal</h4>
+
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.handleClose}>Close</Button>
+          </Modal.Footer>
+        </Modal>
 
     <SketchPicker
       className={this.state.backgroundHidden ? "nav-color hide" : "nav-color"}
@@ -149,23 +172,33 @@ class Layout1 extends Component {
           >
           Save
           </button> 
-          <button 
+          {/* <button 
             className="nav-button"
             onClick={this.handleGetCSS}
           >
           CSS
-          </button> 
+          </button>  */}
+          <Button className="nav-button" onClick={this.handleShow}>
+          CSS
+          </Button>
+          <a href="/profile">
           <button 
             className="nav-button"
           >
           Back to Profile
           </button>
-          <SliderPicker
-      className={this.state.navbarHidden ? "nav-color hide" : "nav-color"}
-      name="navbar"
-      hide-value={this.state.navbarHidden}
-      onChange={ this.handleChangeNavbar } 
-    />
+          </a>
+          <div class="color-picker-wrapper"
+            className={this.state.navbarHidden ? "hide" : ""}
+          >
+            <SketchPicker
+              className="nav-color"
+              display={ this.state.displayColorPicker }
+              name="navbar"
+              onChange={ this.handleChangeNavbar } 
+              onClose={this._handleClose}
+            />
+          </div>
           <a href="#" className="hover"><span className="glyphicon glyphicon-nav glyphicon-bell"
           onClick={this.handleNavClick}></span></a>
         </div>
