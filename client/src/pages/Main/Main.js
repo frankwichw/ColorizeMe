@@ -52,7 +52,7 @@ class Main extends Component {
     }
     return (
       <div>
-      <div className="jumbotron">
+      <div className="jumbotron main-jumbo">
       <h2 className="auth-user"><a href="#" className="login">
       <GoogleLogin
         clientId={keys.google.clientID}
@@ -64,7 +64,7 @@ class Main extends Component {
       </a></h2>
       </div>
       <div className="content">
-      <p>Vivamus sollicitudin felis sed felis elementum feugiat molestie at turpis. Ut et risus vitae dui bibendum ultrices faucibus in arcu. Curabitur semper rutrum pellentesque. Proin tempor non odio vitae tempor. Donec nec dui leo. Duis in viverra quam, a cursus ex. Sed vitae rutrum orci.</p>
+      <p>Use ColorizeMe to create color schemes, save them for later, and generate CSS useable in projects and web apps. Simple interface makes it easy to make color schemes with hte click of a button.</p>
       </div>
       </div>
     );

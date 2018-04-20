@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
+import GoogleLogin from 'react-google-login';
+import { GoogleLogout } from 'react-google-login';
+import logout from "./logout.js";
+import CSS from "./Profile.css";
 
 class Profile extends Component {
   state = {
@@ -19,9 +23,15 @@ class Profile extends Component {
   render() {
     return (
       <div>
-        <br /><br /><br />
-      <h1>Hewwo</h1>
-      <span>{this.state.title}</span>
+        <div className="jumbotron profile-jumbo"></div>
+        <a href="#" className="login">
+        <GoogleLogout
+            className="login-button inline"
+            buttonText="Logout"
+            onLogoutSuccess={logout}
+        >
+        </GoogleLogout>
+        </a>
       </div>
     );
   }

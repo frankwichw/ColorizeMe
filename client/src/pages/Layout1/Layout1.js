@@ -27,7 +27,45 @@ class Layout1 extends Component {
         navbarHidden: true
       })
     }
+  };
 
+  handleBackgroundClick = event => {
+    console.log(event.target);
+    if (this.state.backgroundHidden){
+      this.setState({
+        backgroundHidden: false
+      })
+    } else {
+      this.setState({
+        backgroundHidden: true
+      })
+    }
+  };
+
+  handleLeftClick = event => {
+    console.log(event.target);
+    if (this.state.leftSidebarHidden){
+      this.setState({
+        leftSidebarHidden: false
+      })
+    } else {
+      this.setState({
+        leftSidebarHidden: true
+      })
+    }
+  };
+
+  handleRightClick = event => {
+    console.log(event.target);
+    if (this.state.rightSidebarHidden){
+      this.setState({
+        rightSidebarHidden: false
+      })
+    } else {
+      this.setState({
+        rightSidebarHidden: true
+      })
+    }
   };
 
   handleInputChange = event => {
@@ -96,13 +134,6 @@ class Layout1 extends Component {
             <span className="icon-bar"></span>                        
           </button>
           <span className="navbar-brand black-text">Logo</span>
-          {/* <span style={{color: "#000"}}>Color:</span> 
-          <input 
-            className="jscolor nav-color" 
-            value={this.state.navbar}
-            onChange={this.handleInputChange}
-            name="navbar"
-          /> */}
         </div>
         <div className="collapse navbar-collapse" id="myNavbar">
           <ul className="nav navbar-nav black-text">
@@ -111,8 +142,9 @@ class Layout1 extends Component {
             <li className="list-items">Projects</li>
             <li className="list-items">Contact</li>
           </ul>
-          <span className="glyphicon glyphicon-bell"
-          onClick={this.handleNavClick}></span>
+          <button className="nav-button">Save</button> <button className="nav-button">CSS</button> <button className="nav-button">Back to Profile</button>
+          <a href="#" className="hover"><span className="glyphicon glyphicon-nav glyphicon-bell"
+          onClick={this.handleNavClick}></span></a>
         </div>
       </div>
     </nav>
@@ -123,9 +155,16 @@ class Layout1 extends Component {
           <p>Link</p>
           <p>Link</p>
           <p>Link</p>
+          <p>Link</p>
+          <p>Link</p>
+          <a href="#" className="hover">
+          <span className="glyphicon glyphicon-left glyphicon-bell"
+          onClick={this.handleLeftClick}></span></a>
         </div>
         <div className="col-sm-8 text-left"> 
-          <h1>Welcome</h1>
+          <h1>Welcome <a href="#" className="hover">
+          <span className="glyphicon glyphicon-background glyphicon-bell"
+          onClick={this.handleBackgroundClick}></span></a></h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
         <div className="col-sm-2 sidenav" style={{backgroundColor: this.state.right_sidebar}}>
@@ -135,6 +174,9 @@ class Layout1 extends Component {
           <div className="well">
             <p>ADS</p>
           </div>
+          <a href="#" className="hover">
+          <span className="glyphicon glyphicon-nav glyphicon-bell"
+          onClick={this.handleRightClick}></span></a>
         </div>
       </div>
     </div>
