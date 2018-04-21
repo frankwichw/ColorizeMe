@@ -7,6 +7,7 @@ import { Modal, Button } from 'react-bootstrap';
 
 class Layout1 extends Component {
   state = {
+    title: "",
     displayColorPicker: true,
     background: "#fff",
     backgroundHidden: true,
@@ -16,21 +17,42 @@ class Layout1 extends Component {
     rightSidebarHidden: true,
     left_sidebar: "#f1f1f1",
     leftSidebarHidden: true,
-    show: false
+    showCSS: false,
+    showSave: false
   };
 
-  handleClose = () => {
-    this.setState({ show: false });
+  handleSave = () => {
+    API.saveBook({
+      title: this.state.title,
+      background: this.state.background,
+      navbar: this.state.navbar,
+      right_sidebar: this.state.right_sidebar,
+      left_sidebar: this.state.left_sidebar
+    })
+      .catch(err => console.log(err));
   };
 
-  handleShow = () => {
-    this.setState({ show: true });
+  handleCloseCSS = () => {
+    this.setState({ showCSS: false });
   };
+
+  handleShowCSS = () => {
+    this.setState({ showCSS: true });
+  };
+
+  handleCloseSave = () => {
+    this.setState({ showSave: false });
+  };
+
+  handleShowSave = () => {
+    this.setState({ showSave: true });
+  };
+
 
   handleGetCSS = event => {
     event.preventDefault();
-    const css = ".background {\nbackground-color: " + this.state.background + ";\n}\n.navbar {\nbackground-color: " + this.state.navbar + ";\n}\n.left-sidebar {\nbackground-color: " + this.state.left_sidebar + ";\n}\n.right-sidebar {\nbackground-color: " + this.state.right_sidebar + ";\n}";
-    console.log(css);
+    let cssClasses = ".background {\nbackground-color: " + this.state.background + ";\n}\n.navbar {\nbackground-color: " + this.state.navbar + ";\n}\n.left-sidebar {\nbackground-color: " + this.state.left_sidebar + ";\n}\n.right-sidebar {\nbackground-color: " + this.state.right_sidebar + ";\n}";
+    this.handleShow();
   };
 
   handleNavClick = event => {
@@ -115,20 +137,44 @@ class Layout1 extends Component {
   
   
   render() {
-
     return (
     <div className="wrapper" style={{backgroundColor: this.state.background}}>
 
-        <Modal show={this.state.show} onHide={this.handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+    <Modal show={this.state.showSave} onHide={this.handleCloseSave}>
+          <Modal.Header closeButton className="modal-header">
+            <Modal.Title>Save Color Scheme</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            <h4>Text in a modal</h4>
+          <Modal.Body className="modal-css">
+            <h4>Give your color scheme a name!</h4>
 
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.handleClose}>Close</Button>
+            <Button className="save-btn" onClick={this.handleSave}>Save</Button> 
+            <Button onClick={this.handleCloseSave}>Cancel</Button>
+          </Modal.Footer>
+        </Modal>
+
+        <Modal show={this.state.showCSS} onHide={this.handleCloseCSS}>
+          <Modal.Header closeButton className="modal-header">
+            <Modal.Title>CSS</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="modal-css">
+            {".background {"}<br />
+            {"background-color: " + this.state.background + ";"}<br />
+            {"}"}<br />
+            {".navbar {"}<br />
+            {"background-color: " + this.state.navbar + ";"}<br />
+            {"}"}<br />
+            {".left-sidebar {"}<br />
+            {"background-color: " + this.state.left_sidebar + ";"}<br />
+            {"}"}<br />
+            {".right-sidebar {"}<br />
+            {"background-color: " + this.state.right_sidebar + ";"}<br />
+            {"}"}
+
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.handleCloseCSS}>Close</Button>
           </Modal.Footer>
         </Modal>
 
@@ -167,18 +213,10 @@ class Layout1 extends Component {
             <li className="list-items">Projects</li>
             <li className="list-items">Contact</li>
           </ul>
-          <button 
-            className="nav-button"
-          >
+          <Button className="nav-button" onClick={this.handleShowSave}>
           Save
-          </button> 
-          {/* <button 
-            className="nav-button"
-            onClick={this.handleGetCSS}
-          >
-          CSS
-          </button>  */}
-          <Button className="nav-button" onClick={this.handleShow}>
+          </Button> 
+          <Button className="nav-button" onClick={this.handleShowCSS}>
           CSS
           </Button>
           <a href="/profile">
@@ -188,7 +226,7 @@ class Layout1 extends Component {
           Back to Profile
           </button>
           </a>
-          <div class="color-picker-wrapper"
+          <div className="color-picker-wrapper"
             className={this.state.navbarHidden ? "hide" : ""}
           >
             <SketchPicker
