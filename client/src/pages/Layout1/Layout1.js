@@ -4,6 +4,7 @@ import API from "../../utils/API";
 import CSS from "./Layout1.css";
 import { SliderPicker, SketchPicker } from 'react-color';
 import { Modal, Button } from 'react-bootstrap';
+import { Input } from "../../components/Form/Input";
 
 class Layout1 extends Component {
   state = {
@@ -22,14 +23,24 @@ class Layout1 extends Component {
   };
 
   handleSave = () => {
-    API.saveBook({
-      title: this.state.title,
-      background: this.state.background,
-      navbar: this.state.navbar,
-      right_sidebar: this.state.right_sidebar,
-      left_sidebar: this.state.left_sidebar
-    })
-      .catch(err => console.log(err));
+    if (this.state.title){
+      API.saveColorScheme({
+        title: this.state.title,
+        background: this.state.background,
+        navbar: this.state.navbar,
+        right_sidebar: this.state.right_sidebar,
+        left_sidebar: this.state.left_sidebar
+      })
+        .catch(err => console.log(err));
+    }
+    this.setState({ showSave: false });
+  };
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
   };
 
   handleCloseCSS = () => {
@@ -107,14 +118,6 @@ class Layout1 extends Component {
     }
   };
 
-  handleInputChange = event => {
-    console.log(event);
-    const { name, value } = event.target;
-    this.setState({
-      [name]: "#" + value
-    });
-  };
-
   handleChangeNavbar = (color, event) => {
     // const { name, color.hex } = event.target;
     this.setState({ navbar: color.hex });
@@ -146,7 +149,14 @@ class Layout1 extends Component {
           </Modal.Header>
           <Modal.Body className="modal-css">
             <h4>Give your color scheme a name!</h4>
-
+            <form>
+              <Input
+                value={this.state.title}
+                onChange={this.handleInputChange}
+                name="title"
+                placeholder="Title"
+              />
+            </form>
           </Modal.Body>
           <Modal.Footer>
             <Button className="save-btn" onClick={this.handleSave}>Save</Button> 
@@ -178,6 +188,17 @@ class Layout1 extends Component {
           </Modal.Footer>
         </Modal>
 
+    <div className="color-picker-wrapper"
+      className={this.state.navbarHidden ? "hide" : ""}
+    >
+      <SketchPicker
+        className="nav-color"
+        display={ this.state.displayColorPicker }
+        name="navbar"
+        onChange={ this.handleChangeNavbar } 
+        onClose={this._handleClose}
+      />
+    </div>
     <SketchPicker
       className={this.state.backgroundHidden ? "nav-color hide" : "nav-color"}
       name="background"
@@ -226,17 +247,6 @@ class Layout1 extends Component {
           Back to Profile
           </button>
           </a>
-          <div className="color-picker-wrapper"
-            className={this.state.navbarHidden ? "hide" : ""}
-          >
-            <SketchPicker
-              className="nav-color"
-              display={ this.state.displayColorPicker }
-              name="navbar"
-              onChange={ this.handleChangeNavbar } 
-              onClose={this._handleClose}
-            />
-          </div>
           <a href="#" className="hover"><span className="glyphicon glyphicon-nav glyphicon-bell"
           onClick={this.handleNavClick}></span></a>
         </div>

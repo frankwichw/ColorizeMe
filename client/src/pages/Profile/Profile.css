@@ -1,5 +1,9 @@
 .profile-jumbo {
     background-color: #b7b1a8;
     background-size: 940px 400px;
-    height: 350px;
+    height: 300px;
+}
+
+.color-box-row {
+    margin-bottom: 100px;
 }

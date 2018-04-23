@@ -15,6 +15,7 @@ export default {
   },
   // Saves a book to the database
   saveColorScheme: function(layout1Data) {
+    console.log("getting to save color scheme route");
     return axios.post("/api/layout1", layout1Data);
   }
 };

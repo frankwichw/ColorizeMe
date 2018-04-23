@@ -1,4 +1,4 @@
 module.exports = {
-  User: require("./user"),
-  ColorScheme: require("./colorScheme")
+  Layout1: require("./colorScheme"),
+  User: require("./user")
 };

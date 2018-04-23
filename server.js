@@ -19,9 +19,7 @@ app.use(routes);
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/colorizeMeDb";
 
 mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI, {
-  useMongoClient: true
-});
+mongoose.connect(MONGODB_URI, {});
 
 // Start the API server
 app.listen(PORT, function() {

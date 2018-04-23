@@ -3,6 +3,7 @@ const db = require("../models");
 
 module.exports = {
   findColorSchemes: function(req, res) {
+    console.log('Executed!');
     db.Layout1
       .find(req.query)
       .then(dbModel => res.json(dbModel))
@@ -15,6 +16,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
+    console.log(req.body);
     db.Layout1
       .create(req.body)
       .then(dbModel => res.json(dbModel))

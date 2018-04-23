@@ -4,26 +4,29 @@ import API from "../../utils/API";
 import GoogleLogin from 'react-google-login';
 import { GoogleLogout } from 'react-google-login';
 import logout from "./logout.js";
+import ColorBox from "../../components/ColorBox/ColorBox.js";
 import CSS from "./Profile.css";
 
 class Profile extends Component {
   state = {
-    colorSchemes: [{
-      title: "color scheme 1"
-    }]
+    userName: "W Frankwich",
+    colorSchemes: []
   };
-  // When this component mounts, grab the book with the _id of this.props.match.params.id
-  // e.g. localhost:3000/books/599dcb67f0f16317844583fc
-  // componentDidMount() {
-  //   API.getColorSchemes(this.props.match.params.id)
-  //     .then(res => this.setState({ book: res.data }))
-  //     .catch(err => console.log(err));
-  // }
+  
+  componentDidMount() {
+    API.getColorSchemes()
+      .then(res => {
+        console.log(res.status);
+        this.setState({ colorSchemes: res.data })
+      })
+      .catch(err => console.log(err));
+  };
 
   render() {
     return (
       <div>
-        <div className="jumbotron profile-jumbo"></div>
+        <div className="jumbotron profile-jumbo"><br /><br />
+        <h2>{this.state.userName}</h2>
         <a href="#" className="login">
         <GoogleLogout
             className="login-button inline"
@@ -32,6 +35,20 @@ class Profile extends Component {
         >
         </GoogleLogout>
         </a>
+        </div>
+        <div className="col-xl-2 col-lg-2 col-md-2"></div>
+        <div className="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9">
+            <div className="row color-box-row">
+            {this.state.colorSchemes.map(scheme => (
+              <ColorBox 
+                key={scheme._id}
+                title={scheme.title}
+                header={scheme.navbar}
+                background={scheme.background}
+              />
+            ))}
+            </div>
+          </div>
       </div>
     );
   }

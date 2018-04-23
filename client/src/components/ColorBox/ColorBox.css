@@ -1,0 +1,26 @@
+.color-box {
+    margin-left: 40px;
+    margin-top: 30px;
+    height: 150px;
+    padding: 0px;
+    -webkit-box-shadow: 0px 7px 12px -1px rgba(79,79,79,1);
+    -moz-box-shadow: 0px 7px 12px -1px rgba(79,79,79,1);
+    box-shadow: 0px 7px 12px -1px rgba(79,79,79,1);
+}
+
+.color-box-header {
+    margin-top: 0px;
+}
+
+.color-box-btn {
+    border: none;
+    background-color: #b7b1a8;
+    color: #fff;
+    padding-right: 10px;
+    padding-top: 6px;
+    padding-left: 10px;
+}
+
+.color-box-btn:hover{
+    background-color: #d7cec7;
+}
