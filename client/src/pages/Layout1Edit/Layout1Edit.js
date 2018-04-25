@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
-import CSS from "./Layout1.css";
+import CSS from "./Layout1Edit.css";
 import { SliderPicker, SketchPicker } from 'react-color';
 import { Modal, Button } from 'react-bootstrap';
 import { Input } from "../../components/Form/Input";
@@ -12,19 +12,30 @@ class Layout1 extends React.Component {
     this.state = {
       title: "",
       displayColorPicker: true,
-      background: "#fff",
+    //   background: "#fff",
       backgroundHidden: true,
-      navbar: "#f1f1f1",
+    //   navbar: "#f1f1f1",
       navbarHidden: true,
-      right_sidebar: "#f1f1f1",
+    //   right_sidebar: "#f1f1f1",
       rightSidebarHidden: true,
-      left_sidebar: "#f1f1f1",
+    //   left_sidebar: "#f1f1f1",
       leftSidebarHidden: true,
       showCSS: false,
-      showSave: false
+      showSave: false,
+      colorScheme: []
     };
 
     this.handleChangeLeftSidebar2 = this.handleChangeLeftSidebar2.bind(this);
+  };
+
+  componentDidMount() {
+    const id = this.props.match.params.id;
+    API.getcolorScheme(id)
+      .then(res => {
+        console.log(res.status);
+        this.setState({ colorScheme: res.data });
+      })
+      .catch(err => console.log(err));
   };
 
   // handle saving color scheme through api route
@@ -163,7 +174,7 @@ class Layout1 extends React.Component {
   
   render() {
     return (
-    <div className="wrapper" style={{backgroundColor: this.state.background}}>
+    <div className="wrapper" style={{backgroundColor: this.state.colorScheme.background}}>
 
     <Modal show={this.state.showSave} onHide={this.handleCloseSave}>
           <Modal.Header closeButton className="modal-header">
@@ -173,10 +184,10 @@ class Layout1 extends React.Component {
             <h4>Give your color scheme a name!</h4>
             <form>
               <Input
-                value={this.state.title}
+                value={this.state.colorScheme.title}
                 onChange={this.handleInputChange}
                 name="title"
-                placeholder="Title"
+                placeholder={this.state.colorScheme.title}
               />
             </form>
           </Modal.Body>
@@ -192,16 +203,16 @@ class Layout1 extends React.Component {
           </Modal.Header>
           <Modal.Body className="modal-css">
             {".background {"}<br />
-            {"background-color: " + this.state.background + ";"}<br />
+            {"background-color: " + this.state.colorScheme.background + ";"}<br />
             {"}"}<br />
             {".navbar {"}<br />
-            {"background-color: " + this.state.navbar + ";"}<br />
+            {"background-color: " + this.state.colorScheme.navbar + ";"}<br />
             {"}"}<br />
             {".left-sidebar {"}<br />
-            {"background-color: " + this.state.left_sidebar + ";"}<br />
+            {"background-color: " + this.state.colorScheme.left_sidebar + ";"}<br />
             {"}"}<br />
             {".right-sidebar {"}<br />
-            {"background-color: " + this.state.right_sidebar + ";"}<br />
+            {"background-color: " + this.state.colorScheme.right_sidebar + ";"}<br />
             {"}"}
 
           </Modal.Body>
@@ -239,7 +250,7 @@ class Layout1 extends React.Component {
       hide-value={this.state.leftSidebarHidden}
       onChange={ this.handleChangeLeftSidebar } 
     />
-    <nav className="navbar layout-nav" style={{backgroundColor: this.state.navbar}}>
+    <nav className="navbar layout-nav" style={{backgroundColor: this.state.colorScheme.navbar}}>
       <div className="container-fluid">
         <div className="navbar-header">
           <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -277,7 +288,7 @@ class Layout1 extends React.Component {
       
     <div className="container-fluid text-center">  
       <div className="row content">
-        <div className="col-sm-2 sidenav" style={{backgroundColor: this.state.left_sidebar}}>
+        <div className="col-sm-2 sidenav" style={{backgroundColor: this.state.colorScheme.left_sidebar}}>
           <p>Link</p>
           <p>Link</p>
           <p>Link</p>
@@ -285,7 +296,7 @@ class Layout1 extends React.Component {
           <p>Link</p>
           <input 
             className="jscolor" 
-            value={this.state.left_sidebar}
+            value={this.state.colorScheme.left_sidebar}
             // name="left_sidebar"
             onChange={this.handleChangeLeftSidebar2}
             // type="text"
@@ -300,7 +311,7 @@ class Layout1 extends React.Component {
           onClick={this.handleBackgroundClick}></span></a></h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
-        <div className="col-sm-2 sidenav" style={{backgroundColor: this.state.right_sidebar}}>
+        <div className="col-sm-2 sidenav" style={{backgroundColor: this.state.colorScheme.right_sidebar}}>
           <div className="well">
             <p>ADS</p>
           </div>

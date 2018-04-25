@@ -1,0 +1,104 @@
+.wrapper {
+    width: 100%;
+}
+
+.modal-css {
+    color: #000;
+    text-align: left;
+}
+
+.modal-header {
+    background-color: #eb6864;
+}
+
+.save-btn {
+    background: #eb6864;
+    border-color: #eb6864;
+}
+
+/* Remove the navbar's default margin-bottom and rounded borders */ 
+.layout-nav {
+    margin-bottom: 0;
+    border-radius: 0;
+    margin-top: 90px;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {height: 450px}
+
+/* Set gray background color and 100% height */
+.sidenav {
+    padding-top: 20px;
+    background-color: #f1f1f1;
+    height: 100%;
+    margin-top: 20px;
+}
+
+/* Set black background color, white text and some padding */
+footer {
+    background-color: #555;
+    color: white;
+    padding: 15px;
+}
+
+.black-text {
+    color: #000;
+}
+
+.glyphicon {
+    color: #686868;
+    display: inline;
+    font-size: 1em;
+}
+
+a.hover:hover {
+    color: #c40101;
+}
+
+.glyphicon-nav {
+    float: right;
+    margin-top: 22px;
+}
+
+.glyphicon-left {
+    text-align: center;
+    font-size: 1em;
+    padding-top: 50px;
+}
+
+.list-items {
+    margin-top: 18px;
+    padding-right: 10px;
+}
+
+.nav-color {
+    position: fixed;
+    z-index: 1;
+    bottom: 300;
+    right: 600;
+}
+
+.hide {
+    display: none;
+}
+
+.nav-button {
+    background-color: #b7b1a8;
+    color: #fff;
+    border: none;
+    padding: 4px 10px;
+    margin-top: 15px;
+    margin-right: 10px;
+    border-radius: 0px;
+    vertical-align: inherit;
+    font: inherit;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+    .sidenav {
+    height: auto;
+    padding: 15px;
+    }
+    .row.content {height:auto;} 
+}
