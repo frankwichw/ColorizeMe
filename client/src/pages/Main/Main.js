@@ -12,7 +12,8 @@ class Main extends Component {
     super(props);
        this.state = {
        loginError: false,
-       redirect: false
+       redirect: false,
+       redirect_url: ""
       };
     this.signup = this.signup.bind(this);
   }
@@ -34,14 +35,14 @@ class Main extends Component {
   if (postData) {
     PostData('signup', postData).then((result) => {
        let responseJson = result;
-       sessionStorage.setItem("userData", JSON.stringify(responseJson));
+       sessionStorage.setItem("userData", responseJson);
        this.setState({redirect: true});
     });
     } else {}
   };
 
   render() {
-    if (this.state.redirect || sessionStorage.getItem('userData')) {
+    if (sessionStorage.getItem('userData')) {
       return (<Redirect to={'/profile'}/>)
     }
     

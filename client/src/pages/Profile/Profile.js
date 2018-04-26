@@ -3,14 +3,16 @@ import { Link } from "react-router-dom";
 import API from "../../utils/API";
 import GoogleLogin from 'react-google-login';
 import { GoogleLogout } from 'react-google-login';
-import logout from "./logout.js";
+// import logout from "./logout.js";
 import ColorBox from "../../components/ColorBox/ColorBox.js";
 import { Modal, Button } from 'react-bootstrap';
 import CSS from "./Profile.css";
 
 class Profile extends Component {
   state = {
-    userName: "W Frankwich",
+    name: "",
+    id: "",
+    pic: "",
     colorSchemes: []
   };
   
@@ -21,15 +23,30 @@ class Profile extends Component {
         this.setState({ colorSchemes: res.data })
       })
       .catch(err => console.log(err));
+    var user = localStorage.getItem('userData');
+    var userInfo = JSON.parse(user);
+    this.setState({ name: userInfo.name });
+    this.setState({ id: userInfo.provider_id });
+    this.setState({ pic: userInfo.picture });
   };
+
+
+  logout = () => {
+    sessionStorage.removeItem('userData');
+
+  }
 
   handleCloseCSS = () => {
     this.setState({ showCSS: false });
   };
 
   handleShowCSS = () => {
-    
     this.setState({ showCSS: true });
+  };
+
+  showUser = () => {
+    const userDat = sessionStorage.getItem('userData');
+    console.log(JSON.stringify(userDat[0]));
   };
 
   render() {
@@ -60,15 +77,17 @@ class Profile extends Component {
       </Modal>
       
         <div className="jumbotron profile-jumbo"><br /><br />
-        <h2>{this.state.userName}</h2>
+        <h2>{this.state.name}</h2>
         <a href="#" className="login">
-        <GoogleLogout
+        <div
             className="login-button inline"
             buttonText="Logout"
-            onLogoutSuccess={logout}
+            onClick={this.logout}
         >
-        </GoogleLogout>
+        Logout
+        </div>
         </a>
+        <button onClick={this.showUser}>show user</button>
         </div>
         <div className="col-xl-2 col-lg-2 col-md-2"></div>
         <div className="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9">

@@ -16,9 +16,9 @@ const App = () => (
       <Navigation />
       <Switch>
         <Route exact path="/" component={Main} />
-        <Route exact path="/profile" component={Profile} />
         <Route exact path="/layout1" component={Layout1} />
         <Route exact path="/layout2" component={Layout2} />
+        <Route exact path="/profile" component={Profile} />
         <Route path="/layout1/:id" component={Layout1Edit} />
         <Route component={FourOhFour} />
       </Switch>

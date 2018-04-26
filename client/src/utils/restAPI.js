@@ -1,5 +1,10 @@
+import API from "./API";
+
 export function PostData(type, userData) {
-    console.log(userData);
+    // console.log(userData);
+    localStorage.setItem("userData", JSON.stringify(userData));
+    var user = localStorage.getItem('userData');
+    console.log(user);
     let BaseURL = 'http://localhost:3000/api/';
     //let BaseURL = 'http://localhost/socialapi/';
     

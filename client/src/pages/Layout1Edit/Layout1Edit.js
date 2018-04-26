@@ -142,22 +142,23 @@ class Layout1 extends React.Component {
 
   handleChangeNavbar = (color, event) => {
     // const { name, color.hex } = event.target;
-    this.setState({ navbar: color.hex });
+    
+    // this.setState({colorScheme.navbar: color.hex });
   };
 
   handleChangeBackground = (color, event) => {
     // const { name, color.hex } = event.target;
-    this.setState({ background: color.hex });
+    this.setState({colorScheme: { background: color.hex }});
   };
 
   handleChangeRightSidebar = (color, event) => {
     // const { name, color.hex } = event.target;
-    this.setState({ right_sidebar: color.hex });
+    this.setState({colorScheme: { right_sidebar: color.hex }});
   };
 
   handleChangeLeftSidebar = (color, event) => {
     // const { name, color.hex } = event.target;
-    this.setState({ left_sidebar: color.hex });
+    this.setState({colorScheme: { left_sidebar: color.hex }});
   };
   
   handleChangeLeftSidebar2(event) {
