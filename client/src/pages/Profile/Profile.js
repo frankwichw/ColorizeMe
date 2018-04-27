@@ -81,7 +81,6 @@ class Profile extends Component {
         <a href="#" className="login">
         <div
             className="login-button inline"
-            buttonText="Logout"
             onClick={this.logout}
         >
         Logout

@@ -7,6 +7,10 @@ const Layout1Schema = new Schema({
       type: String, 
       required: true 
   },
+  google_id: {
+      type: String,
+      required: true
+  },
   background: { 
     type: String, 
     required: true 

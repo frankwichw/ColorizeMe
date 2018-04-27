@@ -21,7 +21,8 @@ class Layout1 extends React.Component {
       left_sidebar: "#f1f1f1",
       leftSidebarHidden: true,
       showCSS: false,
-      showSave: false
+      showSave: false,
+      googleID: ""
     };
 
     this.handleChangeLeftSidebar2 = this.handleChangeLeftSidebar2.bind(this);
@@ -67,6 +68,8 @@ class Layout1 extends React.Component {
   };
 
   handleShowSave = () => {
+    const userObj = sessionStorage.getItem('userData');
+    console.log(userObj.user);
     this.setState({ showSave: true });
   };
 
