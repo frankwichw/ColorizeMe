@@ -1,21 +1,26 @@
 import axios from "axios";
 
 export default {
-  // Gets all books
-  getColorSchemes: function() {
+  // get all color schemes
+  getUserColorSchemes: function() {
     return axios.get("/api/layout1");
   },
-  // Gets the book with the given id
+  // get scheme with specific id
   getcolorScheme: function(id) {
     return axios.get("/api/layout1/" + id);
   },
-  // Deletes the book with the given id
+  // delete scheme with specific id
   deleteColorScheme: function(id) {
     return axios.delete("/api/layout1/" + id);
   },
-  // Saves a book to the database
+  // saves scheme to database
   saveColorScheme: function(layout1Data) {
     console.log("getting to save color scheme route");
     return axios.post("/api/layout1", layout1Data);
+  },
+  // updates color scheme
+  updateColorScheme: function(layout1Data, id) {
+    console.log("updating api route reached");
+    return axios.put("/api/layout1/" + id, layout1Data);
   }
 };

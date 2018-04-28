@@ -3,11 +3,14 @@ const db = require("../models");
 
 module.exports = {
   findColorSchemes: function(req, res) {
-    console.log('Executed!');
     db.Layout1
       .find(req.query)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  findByGoogleId: function(req, res) {
+    db.Layout1
+      .findAll({where: {google_id: req.params.id}})
   },
   findById: function(req, res) {
     db.Layout1

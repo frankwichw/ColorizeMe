@@ -13,6 +13,9 @@ router.route("/layout1/:id")
   .put(colorSchemeController.update)
   .delete(colorSchemeController.remove);
 
+router.route("/layout1/all/:googleid")
+  .get(colorSchemeController.findByGoogleId);
+
 router.route("/signup")
   .post(userController.create);
 

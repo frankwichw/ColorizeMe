@@ -47,8 +47,7 @@ class Main extends Component {
     }
     
     const responseGoogle = (response) => {
-        console.log("google console");
-        console.log(response);
+        // console.log(response);
         this.signup(response, 'google');
     }
     return (
@@ -57,7 +56,7 @@ class Main extends Component {
       <h2 className="auth-user"><a href="#" className="login">
       <GoogleLogin
         clientId={keys.google.clientID}
-        buttonText="Get Started with Google+"
+        buttonText="Sign in with Google+"
         className="login-button"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}

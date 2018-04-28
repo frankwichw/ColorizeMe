@@ -17,23 +17,30 @@ class Profile extends Component {
   };
   
   componentDidMount() {
-    API.getColorSchemes()
+    const user = localStorage.getItem('userData');
+    const userInfo = JSON.parse(user);
+    const userProviderId = userInfo.provider_id;
+    console.log(userProviderId);
+    this.setState({ name: userInfo.name, id: userProviderId, pic: userInfo.provider_pic });
+    // this.setState({ id: userProviderId });
+    // this.setState({ pic: userInfo.picture });
+    console.log(this.state.id);
+    console.log(userInfo);
+
+    API.getUserColorSchemes(userProviderId)
       .then(res => {
         console.log(res.status);
+        console.log(res.data);
         this.setState({ colorSchemes: res.data })
       })
       .catch(err => console.log(err));
-    var user = localStorage.getItem('userData');
-    var userInfo = JSON.parse(user);
-    this.setState({ name: userInfo.name });
-    this.setState({ id: userInfo.provider_id });
-    this.setState({ pic: userInfo.picture });
+
   };
 
 
   logout = () => {
     sessionStorage.removeItem('userData');
-
+    localStorage.removeItem('userData');
   }
 
   handleCloseCSS = () => {
@@ -42,11 +49,6 @@ class Profile extends Component {
 
   handleShowCSS = () => {
     this.setState({ showCSS: true });
-  };
-
-  showUser = () => {
-    const userDat = sessionStorage.getItem('userData');
-    console.log(JSON.stringify(userDat[0]));
   };
 
   render() {
@@ -86,7 +88,6 @@ class Profile extends Component {
         Logout
         </div>
         </a>
-        <button onClick={this.showUser}>show user</button>
         </div>
         <div className="col-xl-2 col-lg-2 col-md-2"></div>
         <div className="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9">

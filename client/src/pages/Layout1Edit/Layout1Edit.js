@@ -41,8 +41,9 @@ class Layout1 extends React.Component {
   // handle saving color scheme through api route
   handleSave = () => {
     if (this.state.title){
-      API.saveColorScheme({
+      API.updateColorScheme({
         title: this.state.title,
+        google_id: this.state.googleID,
         background: this.state.background,
         navbar: this.state.navbar,
         right_sidebar: this.state.right_sidebar,

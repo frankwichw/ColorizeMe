@@ -30,9 +30,14 @@ class Layout1 extends React.Component {
 
   // handle saving color scheme through api route
   handleSave = () => {
+    var user = localStorage.getItem('userData');
+    var userData = JSON.parse(user);
+    var providerID = JSON.stringify(userData.provider_id);
+
     if (this.state.title){
       API.saveColorScheme({
         title: this.state.title,
+        google_id: providerID,
         background: this.state.background,
         navbar: this.state.navbar,
         right_sidebar: this.state.right_sidebar,
@@ -68,8 +73,6 @@ class Layout1 extends React.Component {
   };
 
   handleShowSave = () => {
-    const userObj = sessionStorage.getItem('userData');
-    console.log(userObj.user);
     this.setState({ showSave: true });
   };
 
@@ -81,7 +84,6 @@ class Layout1 extends React.Component {
   };
 
   handleNavClick = event => {
-    console.log(event.target);
     if (this.state.navbarHidden){
       this.setState({
         navbarHidden: false
@@ -94,7 +96,6 @@ class Layout1 extends React.Component {
   };
 
   handleBackgroundClick = event => {
-    console.log(event.target);
     if (this.state.backgroundHidden){
       this.setState({
         backgroundHidden: false
@@ -107,7 +108,6 @@ class Layout1 extends React.Component {
   };
 
   handleLeftClick = event => {
-    console.log(event.target);
     if (this.state.leftSidebarHidden){
       this.setState({
         leftSidebarHidden: false
@@ -120,7 +120,6 @@ class Layout1 extends React.Component {
   };
 
   handleRightClick = event => {
-    console.log(event.target);
     if (this.state.rightSidebarHidden){
       this.setState({
         rightSidebarHidden: false
