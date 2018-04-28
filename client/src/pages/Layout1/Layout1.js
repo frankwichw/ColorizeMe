@@ -32,7 +32,7 @@ class Layout1 extends React.Component {
   handleSave = () => {
     var user = localStorage.getItem('userData');
     var userData = JSON.parse(user);
-    var providerID = JSON.stringify(userData.provider_id);
+    var providerID = userData.provider_id;
 
     if (this.state.title){
       API.saveColorScheme({

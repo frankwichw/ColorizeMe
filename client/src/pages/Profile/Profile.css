@@ -9,3 +9,35 @@
 .color-box-row {
     margin-bottom: 100px;
 }
+
+.users-name {
+    font-size: 3em;
+    margin-bottom: 45px;
+}
+
+.user-pic {
+    float: right;
+    border-radius: 100px;
+    margin-right: 40px;
+    width: 150px;
+}
+
+.logout-button {
+    background: #eb6864;
+    width: 90px;
+    text-align: center;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border: 1px solid #d7cec7;
+    margin-top: 5px;
+}
+
+.color-scheme-button {
+    background: #eb6864;
+    width: 190px;
+    text-align: center;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    color: white;
+    margin-right: 15px;
+}

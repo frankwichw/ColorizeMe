@@ -2,8 +2,8 @@ import axios from "axios";
 
 export default {
   // get all color schemes
-  getUserColorSchemes: function() {
-    return axios.get("/api/layout1");
+  getUserColorSchemes: function(googleId) {
+    return axios.get("/api/layout1/all/" + googleId);
   },
   // get scheme with specific id
   getcolorScheme: function(id) {

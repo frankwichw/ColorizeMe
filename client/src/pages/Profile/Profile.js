@@ -11,47 +11,53 @@ import CSS from "./Profile.css";
 class Profile extends Component {
   state = {
     name: "",
-    id: "",
+    googleId: "",
     pic: "",
+    currentScheme: [],
     colorSchemes: []
   };
+
+  constructor(props) {
+    super(props);
+    this.renderData();
+  }
   
-  componentDidMount() {
+  // componentDidMount() {
+  // };
+
+  renderData = () => {
     const user = localStorage.getItem('userData');
     const userInfo = JSON.parse(user);
-    const userProviderId = userInfo.provider_id;
-    console.log(userProviderId);
-    this.setState({ name: userInfo.name, id: userProviderId, pic: userInfo.provider_pic });
-    // this.setState({ id: userProviderId });
-    // this.setState({ pic: userInfo.picture });
-    console.log(this.state.id);
-    console.log(userInfo);
-
-    API.getUserColorSchemes(userProviderId)
+    const userProviderId = userInfo.provider_id.toString();
+    this.state.name = userInfo.name;
+    this.state.googleId = userProviderId;
+    this.state.pic = userInfo.provider_pic ;
+    API.getUserColorSchemes(this.state.googleId)
       .then(res => {
         console.log(res.status);
         console.log(res.data);
         this.setState({ colorSchemes: res.data })
       })
       .catch(err => console.log(err));
-
   };
-
 
   logout = () => {
     sessionStorage.removeItem('userData');
     localStorage.removeItem('userData');
-  }
+  };
 
   handleCloseCSS = () => {
     this.setState({ showCSS: false });
   };
 
-  handleShowCSS = () => {
+  handleShowCSS = scheme => {
+    console.log(scheme);
+    this.setState({currentScheme: scheme});
     this.setState({ showCSS: true });
   };
 
   render() {
+    
     return (
       <div>
       <Modal show={this.state.showCSS} onHide={this.handleCloseCSS}>
@@ -60,16 +66,16 @@ class Profile extends Component {
         </Modal.Header>
         <Modal.Body className="modal-css">
           {".background {"}<br />
-          {"background-color: " + this.state.background + ";"}<br />
+          {"background-color: " + this.state.currentScheme.background + ";"}<br />
           {"}"}<br />
           {".navbar {"}<br />
-          {"background-color: " + this.state.navbar + ";"}<br />
+          {"background-color: " + this.state.currentScheme.navbar + ";"}<br />
           {"}"}<br />
           {".left-sidebar {"}<br />
-          {"background-color: " + this.state.left_sidebar + ";"}<br />
+          {"background-color: " + this.state.currentScheme.left_sidebar + ";"}<br />
           {"}"}<br />
           {".right-sidebar {"}<br />
-          {"background-color: " + this.state.right_sidebar + ";"}<br />
+          {"background-color: " + this.state.currentScheme.right_sidebar + ";"}<br />
           {"}"}
 
         </Modal.Body>
@@ -79,15 +85,22 @@ class Profile extends Component {
       </Modal>
       
         <div className="jumbotron profile-jumbo"><br /><br />
-        <h2>{this.state.name}</h2>
-        <a href="#" className="login">
-        <div
-            className="login-button inline"
+        <h1 class="users-name">{this.state.name}  <img src={this.state.pic} class="user-pic"/></h1>
+        <a href="/layout1">
+        <button 
+          className="login color-scheme-button"
+        >
+        New Color scheme
+        </button>
+        </a>
+
+        <button
+            className="login login-button logout-button inline"
             onClick={this.logout}
         >
         Logout
-        </div>
-        </a>
+        </button>
+       
         </div>
         <div className="col-xl-2 col-lg-2 col-md-2"></div>
         <div className="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9">
@@ -99,7 +112,7 @@ class Profile extends Component {
                 title={scheme.title}
                 header={scheme.navbar}
                 background={scheme.background}
-                handleModal={this.handleShowCSS}
+                handleModal={() => this.handleShowCSS(scheme)}
               />
             ))}
             </div>

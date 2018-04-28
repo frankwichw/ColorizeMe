@@ -9,8 +9,12 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findByGoogleId: function(req, res) {
+    console.log(req.params.googleid);
+    console.log(typeof req.params.googleid);
     db.Layout1
-      .findAll({where: {google_id: req.params.id}})
+      .find({google_id: req.params.googleid})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
     db.Layout1
