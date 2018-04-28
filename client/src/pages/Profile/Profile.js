@@ -88,14 +88,14 @@ class Profile extends Component {
         <h1 class="users-name">{this.state.name}  <img src={this.state.pic} class="user-pic"/></h1>
         <a href="/layout1">
         <button 
-          className="login color-scheme-button"
+          className="login color-box-btn color-scheme-button"
         >
         New Color scheme
         </button>
         </a>
 
         <button
-            className="login login-button logout-button inline"
+            className="login color-box-btn login-button logout-button inline"
             onClick={this.logout}
         >
         Logout
