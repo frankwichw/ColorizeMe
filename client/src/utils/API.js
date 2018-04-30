@@ -19,7 +19,7 @@ export default {
     return axios.post("/api/layout1", layout1Data);
   },
   // updates color scheme
-  updateColorScheme: function(layout1Data, id) {
+  updateColorScheme: function(id, layout1Data) {
     console.log("updating api route reached");
     return axios.put("/api/layout1/" + id, layout1Data);
   }

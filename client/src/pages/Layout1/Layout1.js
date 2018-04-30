@@ -11,6 +11,7 @@ class Layout1 extends React.Component {
     super(props);
     this.state = {
       title: "",
+      layout_type: "layout1",
       displayColorPicker: true,
       background: "#fff",
       backgroundHidden: true,
@@ -38,6 +39,7 @@ class Layout1 extends React.Component {
       API.saveColorScheme({
         title: this.state.title,
         google_id: providerID,
+        layout_type: this.state.layout_type,
         background: this.state.background,
         navbar: this.state.navbar,
         right_sidebar: this.state.right_sidebar,
@@ -79,7 +81,6 @@ class Layout1 extends React.Component {
 
   handleGetCSS = event => {
     event.preventDefault();
-    let cssClasses = ".background {\nbackground-color: " + this.state.background + ";\n}\n.navbar {\nbackground-color: " + this.state.navbar + ";\n}\n.left-sidebar {\nbackground-color: " + this.state.left_sidebar + ";\n}\n.right-sidebar {\nbackground-color: " + this.state.right_sidebar + ";\n}";
     this.handleShow();
   };
 
@@ -131,24 +132,20 @@ class Layout1 extends React.Component {
     }
   };
 
-  handleChangeNavbar = (color, event) => {
-    // const { name, color.hex } = event.target;
-    this.setState({ navbar: color.hex });
+  handleChangeNavbar = ({hex}) => {
+    this.setState({ navbar: hex });
   };
 
-  handleChangeBackground = (color, event) => {
-    // const { name, color.hex } = event.target;
-    this.setState({ background: color.hex });
+  handleChangeBackground = ({hex}) => {
+    this.setState({ background: hex });
   };
 
-  handleChangeRightSidebar = (color, event) => {
-    // const { name, color.hex } = event.target;
-    this.setState({ right_sidebar: color.hex });
+  handleChangeRightSidebar = ({hex}) => {
+    this.setState({ right_sidebar: hex });
   };
 
-  handleChangeLeftSidebar = (color, event) => {
-    // const { name, color.hex } = event.target;
-    this.setState({ left_sidebar: color.hex });
+  handleChangeLeftSidebar = ({hex}) => {
+    this.setState({ left_sidebar: hex });
   };
   
   handleChangeLeftSidebar2(event) {
@@ -212,34 +209,33 @@ class Layout1 extends React.Component {
           </Modal.Footer>
         </Modal>
 
-    <div className="color-picker-wrapper"
-      className={this.state.navbarHidden ? "hide" : ""}
-    >
-      <SketchPicker
-        className="nav-color"
-        display={ this.state.displayColorPicker }
-        name="navbar"
-        onChange={ this.handleChangeNavbar } 
-        onClose={this._handleClose}
-      />
-    </div>
+    <SketchPicker
+      className={this.state.navbarHidden ? "nav-color hide" : "nav-color"}
+      name="navbar"
+      hide-value={this.state.navbarHidden}
+      onChange={ this.handleChangeNavbar } 
+      color={ this.state.navbar }
+    />
     <SketchPicker
       className={this.state.backgroundHidden ? "nav-color hide" : "nav-color"}
       name="background"
       hide-value={this.state.backgroundHidden}
       onChange={ this.handleChangeBackground } 
+      color={ this.state.background }
     />
     <SketchPicker
       className={this.state.rightSidebarHidden ? "nav-color hide" : "nav-color"}
       name="right_sidebar"
       hide-value={this.state.rightSidebarHidden}
       onChange={ this.handleChangeRightSidebar } 
+      color={ this.state.right_sidebar }
     />
     <SketchPicker
       className={this.state.leftSidebarHidden ? "nav-color hide" : "nav-color"}
       name="left_sidebar"
       hide-value={this.state.leftSidebarHidden}
       onChange={ this.handleChangeLeftSidebar } 
+      color={ this.state.left_sidebar }
     />
     <nav className="navbar layout-nav" style={{backgroundColor: this.state.navbar}}>
       <div className="container-fluid">
@@ -285,13 +281,6 @@ class Layout1 extends React.Component {
           <p>Link</p>
           <p>Link</p>
           <p>Link</p>
-          <input 
-            className="jscolor" 
-            value={this.state.left_sidebar}
-            // name="left_sidebar"
-            onChange={this.handleChangeLeftSidebar2}
-            // type="text"
-          />
           <a href="#" className="hover">
           <span className="glyphicon glyphicon-left glyphicon-bell"
           onClick={this.handleLeftClick}></span></a>

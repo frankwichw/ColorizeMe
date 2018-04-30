@@ -11,6 +11,10 @@ const Layout1Schema = new Schema({
       type: String,
       required: true
   },
+  layout_type: {
+    type: String,
+    required: true
+  },
   background: { 
     type: String, 
     required: true 

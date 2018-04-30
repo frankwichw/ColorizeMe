@@ -11,21 +11,21 @@ class Layout1 extends React.Component {
     super(props);
     this.state = {
       title: "",
+      googleID: "",
+      layout_type: "layout1",
+      background: "",
+      navbar: "",
+      right_sidebar: "",
+      left_sidebar: "",
+      colorSchemeId: "",
       displayColorPicker: true,
-    //   background: "#fff",
       backgroundHidden: true,
-    //   navbar: "#f1f1f1",
       navbarHidden: true,
-    //   right_sidebar: "#f1f1f1",
       rightSidebarHidden: true,
-    //   left_sidebar: "#f1f1f1",
       leftSidebarHidden: true,
       showCSS: false,
-      showSave: false,
-      colorScheme: []
+      showSave: false
     };
-
-    this.handleChangeLeftSidebar2 = this.handleChangeLeftSidebar2.bind(this);
   };
 
   componentDidMount() {
@@ -33,7 +33,7 @@ class Layout1 extends React.Component {
     API.getcolorScheme(id)
       .then(res => {
         console.log(res.status);
-        this.setState({ colorScheme: res.data });
+        this.setState({ title: res.data.title, googleID: res.data.google_id, background: res.data.background, navbar: res.data.navbar, right_sidebar: res.data.right_sidebar, left_sidebar: res.data.left_sidebar, colorSchemeId: res.data._id});
       })
       .catch(err => console.log(err));
   };
@@ -41,9 +41,10 @@ class Layout1 extends React.Component {
   // handle saving color scheme through api route
   handleSave = () => {
     if (this.state.title){
-      API.updateColorScheme({
+      API.updateColorScheme(this.state.colorSchemeId, {
         title: this.state.title,
         google_id: this.state.googleID,
+        layout_type: this.state.layout_type,
         background: this.state.background,
         navbar: this.state.navbar,
         right_sidebar: this.state.right_sidebar,
@@ -82,15 +83,7 @@ class Layout1 extends React.Component {
     this.setState({ showSave: true });
   };
 
-
-  handleGetCSS = event => {
-    event.preventDefault();
-    let cssClasses = ".background {\nbackground-color: " + this.state.background + ";\n}\n.navbar {\nbackground-color: " + this.state.navbar + ";\n}\n.left-sidebar {\nbackground-color: " + this.state.left_sidebar + ";\n}\n.right-sidebar {\nbackground-color: " + this.state.right_sidebar + ";\n}";
-    this.handleShow();
-  };
-
   handleNavClick = event => {
-    console.log(event.target);
     if (this.state.navbarHidden){
       this.setState({
         navbarHidden: false
@@ -103,7 +96,6 @@ class Layout1 extends React.Component {
   };
 
   handleBackgroundClick = event => {
-    console.log(event.target);
     if (this.state.backgroundHidden){
       this.setState({
         backgroundHidden: false
@@ -116,7 +108,6 @@ class Layout1 extends React.Component {
   };
 
   handleLeftClick = event => {
-    console.log(event.target);
     if (this.state.leftSidebarHidden){
       this.setState({
         leftSidebarHidden: false
@@ -129,7 +120,6 @@ class Layout1 extends React.Component {
   };
 
   handleRightClick = event => {
-    console.log(event.target);
     if (this.state.rightSidebarHidden){
       this.setState({
         rightSidebarHidden: false
@@ -141,42 +131,25 @@ class Layout1 extends React.Component {
     }
   };
 
-  handleChangeNavbar = (color, event) => {
-    // const { name, color.hex } = event.target;
-    
-    // this.setState({colorScheme.navbar: color.hex });
+  handleChangeNavbar = ({hex}) => {
+    this.setState({ navbar: hex });
   };
 
-  handleChangeBackground = (color, event) => {
-    // const { name, color.hex } = event.target;
-    this.setState({colorScheme: { background: color.hex }});
+  handleChangeBackground = ({hex}) => {
+    this.setState({ background: hex });
   };
 
-  handleChangeRightSidebar = (color, event) => {
-    // const { name, color.hex } = event.target;
-    this.setState({colorScheme: { right_sidebar: color.hex }});
+  handleChangeRightSidebar = ({hex}) => {
+    this.setState({ right_sidebar: hex });
   };
 
-  handleChangeLeftSidebar = (color, event) => {
-    // const { name, color.hex } = event.target;
-    this.setState({colorScheme: { left_sidebar: color.hex }});
+  handleChangeLeftSidebar = ({hex}) => {
+    this.setState({ left_sidebar: hex });
   };
-  
-  handleChangeLeftSidebar2(event) {
-    // grabbing name of input and value of input
-    console.log('Correct Method!');
-    const { name, value } = event.target;
-    console.log(value);
-    console.log(name);
-    // set state
-    this.setState({
-      [name]: value
-    });
-  }
   
   render() {
     return (
-    <div className="wrapper" style={{backgroundColor: this.state.colorScheme.background}}>
+    <div className="wrapper" style={{backgroundColor: this.state.background}}>
 
     <Modal show={this.state.showSave} onHide={this.handleCloseSave}>
           <Modal.Header closeButton className="modal-header">
@@ -186,10 +159,10 @@ class Layout1 extends React.Component {
             <h4>Give your color scheme a name!</h4>
             <form>
               <Input
-                value={this.state.colorScheme.title}
+                value={this.state.title}
                 onChange={this.handleInputChange}
                 name="title"
-                placeholder={this.state.colorScheme.title}
+                placeholder={this.state.title}
               />
             </form>
           </Modal.Body>
@@ -205,16 +178,16 @@ class Layout1 extends React.Component {
           </Modal.Header>
           <Modal.Body className="modal-css">
             {".background {"}<br />
-            {"background-color: " + this.state.colorScheme.background + ";"}<br />
+            {"background-color: " + this.state.background + ";"}<br />
             {"}"}<br />
             {".navbar {"}<br />
-            {"background-color: " + this.state.colorScheme.navbar + ";"}<br />
+            {"background-color: " + this.state.navbar + ";"}<br />
             {"}"}<br />
             {".left-sidebar {"}<br />
-            {"background-color: " + this.state.colorScheme.left_sidebar + ";"}<br />
+            {"background-color: " + this.state.left_sidebar + ";"}<br />
             {"}"}<br />
             {".right-sidebar {"}<br />
-            {"background-color: " + this.state.colorScheme.right_sidebar + ";"}<br />
+            {"background-color: " + this.state.right_sidebar + ";"}<br />
             {"}"}
 
           </Modal.Body>
@@ -223,36 +196,36 @@ class Layout1 extends React.Component {
           </Modal.Footer>
         </Modal>
 
-    <div className="color-picker-wrapper"
-      className={this.state.navbarHidden ? "hide" : ""}
-    >
-      <SketchPicker
-        className="nav-color"
-        display={ this.state.displayColorPicker }
-        name="navbar"
-        onChange={ this.handleChangeNavbar } 
-        onClose={this._handleClose}
-      />
-    </div>
+    <SketchPicker
+      className={this.state.navbarHidden ? "nav-color hide" : "nav-color"}
+      display={ this.state.displayColorPicker }
+      name="navbar"
+      hide-value={this.state.navbarHidden}
+      onChange={ this.handleChangeNavbar } 
+      color={ this.state.navbar }
+    />
     <SketchPicker
       className={this.state.backgroundHidden ? "nav-color hide" : "nav-color"}
       name="background"
       hide-value={this.state.backgroundHidden}
       onChange={ this.handleChangeBackground } 
+      color={ this.state.background }
     />
     <SketchPicker
       className={this.state.rightSidebarHidden ? "nav-color hide" : "nav-color"}
       name="right_sidebar"
       hide-value={this.state.rightSidebarHidden}
-      onChange={ this.handleChangeRightSidebar } 
+      onChangeComplete={ this.handleChangeRightSidebar } 
+      color={ this.state.right_sidebar }
     />
     <SketchPicker
       className={this.state.leftSidebarHidden ? "nav-color hide" : "nav-color"}
       name="left_sidebar"
       hide-value={this.state.leftSidebarHidden}
-      onChange={ this.handleChangeLeftSidebar } 
+      onChangeComplete={ this.handleChangeLeftSidebar } 
+      color={ this.state.left_sidebar }
     />
-    <nav className="navbar layout-nav" style={{backgroundColor: this.state.colorScheme.navbar}}>
+    <nav className="navbar layout-nav" style={{backgroundColor: this.state.navbar}}>
       <div className="container-fluid">
         <div className="navbar-header">
           <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -290,19 +263,12 @@ class Layout1 extends React.Component {
       
     <div className="container-fluid text-center">  
       <div className="row content">
-        <div className="col-sm-2 sidenav" style={{backgroundColor: this.state.colorScheme.left_sidebar}}>
+        <div className="col-sm-2 sidenav" style={{backgroundColor: this.state.left_sidebar}}>
           <p>Link</p>
           <p>Link</p>
           <p>Link</p>
           <p>Link</p>
           <p>Link</p>
-          <input 
-            className="jscolor" 
-            value={this.state.colorScheme.left_sidebar}
-            // name="left_sidebar"
-            onChange={this.handleChangeLeftSidebar2}
-            // type="text"
-          />
           <a href="#" className="hover">
           <span className="glyphicon glyphicon-left glyphicon-bell"
           onClick={this.handleLeftClick}></span></a>
@@ -313,7 +279,7 @@ class Layout1 extends React.Component {
           onClick={this.handleBackgroundClick}></span></a></h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
-        <div className="col-sm-2 sidenav" style={{backgroundColor: this.state.colorScheme.right_sidebar}}>
+        <div className="col-sm-2 sidenav" style={{backgroundColor: this.state.right_sidebar}}>
           <div className="well">
             <p>ADS</p>
           </div>

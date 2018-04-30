@@ -9,8 +9,6 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findByGoogleId: function(req, res) {
-    console.log(req.params.googleid);
-    console.log(typeof req.params.googleid);
     db.Layout1
       .find({google_id: req.params.googleid})
       .then(dbModel => res.json(dbModel))
@@ -23,7 +21,6 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    console.log(req.body);
     db.Layout1
       .create(req.body)
       .then(dbModel => res.json(dbModel))
