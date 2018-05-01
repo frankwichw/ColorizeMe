@@ -1,6 +1,6 @@
 # ColorizeMe
 ![ColorizeMe screencap](https://i.imgur.com/CvnBi9r.png "ColorizeMe app")  
-Use ColorizeMe to create color schemes, save them for later, and generate CSS useable in projects and web apps. Simple interface makes it easy to make color schemes with the click of a button.
+ColorizeMe is an app designed to allow users to generate and save color schemes quickly and easily for use in designing their web applications, personal or professional. Grab CSS with the click of a button and preview how color schemes will look in template web-layouts.
 ## Visit ColorizeMe
 * [ColorizeMe on Heroku](https://colorizeme.herokuapp.com/ "ColorizeMe")
 ## Built With
