@@ -64,7 +64,7 @@ class Main extends Component {
       </a></h2>
       </div>
       <div className="content">
-      <p>Use ColorizeMe to create color schemes, save them for later, and generate CSS useable in projects and web apps. Simple interface makes it easy to make color schemes with hte click of a button.</p>
+      <p>Use ColorizeMe to create color schemes, save them for later, and generate CSS useable in projects and web apps. Simple interface makes it easy to make color schemes with the click of a button.</p>
       </div>
       </div>
     );

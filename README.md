@@ -1,6 +1,6 @@
 # ColorizeMe
-![ColorizeMe screencap](https://i.imgur.com/vGJZd2n.png "ColorizeMe app")
-ColorizeMe is an app created to allow users to preview color schemes on website templates in order to make the process of deciding on, and arranging the color scheme of their webiste easier. Users can sign in with a Google+ account, create color schemes, name them, save them, edit them, and delete them if need be!
+![ColorizeMe screencap](https://i.imgur.com/CvnBi9r.png "ColorizeMe app")
+Use ColorizeMe to create color schemes, save them for later, and generate CSS useable in projects and web apps. Simple interface makes it easy to make color schemes with the click of a button.
 ## Visit ColorizeMe
 * [ColorizeMe on Heroku](https://colorizeme.herokuapp.com/ "ColorizeMe")
 ## Built With
