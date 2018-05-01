@@ -1,5 +1,5 @@
 # ColorizeMe
-![ColorizeMe screencap](https://i.imgur.com/CvnBi9r.png "ColorizeMe app")
+![ColorizeMe screencap](https://i.imgur.com/CvnBi9r.png "ColorizeMe app")  
 Use ColorizeMe to create color schemes, save them for later, and generate CSS useable in projects and web apps. Simple interface makes it easy to make color schemes with the click of a button.
 ## Visit ColorizeMe
 * [ColorizeMe on Heroku](https://colorizeme.herokuapp.com/ "ColorizeMe")
