@@ -53,6 +53,21 @@ class Profile extends Component {
     this.setState({ showCSS: true });
   };
 
+  deleteScheme = schemeId => {
+    API.deleteColorScheme(schemeId)
+    .then(res => {
+      console.log(res.status);
+      API.getUserColorSchemes(this.state.googleId)
+      .then(res => {
+        console.log(res.status);
+        console.log(res.data);
+        this.setState({ colorSchemes: res.data })
+      })
+      .catch(err => console.log(err));
+    })
+    .catch(err => console.log(err));
+  };
+
   render() {
     
     return (
@@ -111,6 +126,7 @@ class Profile extends Component {
                 header={scheme.navbar}
                 background={scheme.background}
                 handleModal={() => this.handleShowCSS(scheme)}
+                handleDelete={() => this.deleteScheme(scheme._id)}
               />
             ))}
             </div>

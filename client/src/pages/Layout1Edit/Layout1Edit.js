@@ -195,10 +195,8 @@ class Layout1 extends React.Component {
             <Button onClick={this.handleCloseCSS}>Close</Button>
           </Modal.Footer>
         </Modal>
-
     <SketchPicker
       className={this.state.navbarHidden ? "nav-color hide" : "nav-color"}
-      display={ this.state.displayColorPicker }
       name="navbar"
       hide-value={this.state.navbarHidden}
       onChange={ this.handleChangeNavbar } 
