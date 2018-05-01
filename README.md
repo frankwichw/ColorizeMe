@@ -1,5 +1,5 @@
 # ColorizeMe
-![ColorizeMe screencap][./README-images/colorizemeapp.png]
+![ColorizeMe screencap][https://i.imgur.com/vGJZd2n.png]
 ColorizeMe is an app created to allow users to preview color schemes on website templates in order to make the process of deciding on, and arranging the color scheme of their webiste easier. Users can sign in with a Google+ account, create color schemes, name them, save them, edit them, and delete them if need be!
 ## Visit ColorizeMe
 * [ColorizeMe on Heroku](https://colorizeme.herokuapp.com/ "ColorizeMe")
@@ -24,14 +24,14 @@ ColorizeMe is an app created to allow users to preview color schemes on website 
 * MongoDB 
 * Internet connection for Google+ login
 ### Download Instructions
-1. Clone repo
-```git clone git@github.com:frankwichw/ColorizeMe.git```
-2. Run Mongo server
-```mongod```
-3. Install dependences inside client folder 
-```yarn install```
-4. Install dependencies inside ColorizeMe folder 
-```npm install```
+1. Clone repo  
+```git clone git@github.com:frankwichw/ColorizeMe.git```  
+2. Run Mongo server  
+```mongod```  
+3. Install dependences inside client folder  
+```yarn install```  
+4. Install dependencies inside ColorizeMe folder  
+```npm install```  
 5. Run application in ColorizeMe folder with `yarn start`, ***or*** run `nodemon server.js` in the ColorizeMe folder, and `yarn start` in the client folder. You should be all set!
 ### Created by
 * Wenona Frankwich - sole developer
