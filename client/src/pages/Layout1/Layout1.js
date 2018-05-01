@@ -25,8 +25,6 @@ class Layout1 extends React.Component {
       showSave: false,
       googleID: ""
     };
-
-    this.handleChangeLeftSidebar2 = this.handleChangeLeftSidebar2.bind(this);
   };
 
   // handle saving color scheme through api route
@@ -147,18 +145,6 @@ class Layout1 extends React.Component {
   handleChangeLeftSidebar = ({hex}) => {
     this.setState({ left_sidebar: hex });
   };
-  
-  handleChangeLeftSidebar2(event) {
-    // grabbing name of input and value of input
-    console.log('Correct Method!');
-    const { name, value } = event.target;
-    console.log(value);
-    console.log(name);
-    // set state
-    this.setState({
-      [name]: value
-    });
-  }
   
   render() {
     return (

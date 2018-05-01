@@ -21,9 +21,6 @@ class Profile extends Component {
     super(props);
     this.renderData();
   }
-  
-  // componentDidMount() {
-  // };
 
   renderData = () => {
     const user = localStorage.getItem('userData');
