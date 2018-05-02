@@ -24,7 +24,8 @@ class Layout1 extends React.Component {
       rightSidebarHidden: true,
       leftSidebarHidden: true,
       showCSS: false,
-      showSave: false
+      showSave: false,
+      showHelp: true
     };
   };
 
@@ -66,21 +67,33 @@ class Layout1 extends React.Component {
     });
   };
 
+
+  handleCloseHelp = () => {
+    this.setState({ showHelp: false });
+  };
   // 
   handleCloseCSS = () => {
     this.setState({ showCSS: false });
   };
 
-  handleShowCSS = () => {
+  handleShowCSS = (e) => {
+    e.stopPropagation();
     this.setState({ showCSS: true });
+    this.setState({
+      navbarHidden: true
+    })
   };
 
   handleCloseSave = () => {
     this.setState({ showSave: false });
   };
 
-  handleShowSave = () => {
+  handleShowSave = (e) => {
+    e.stopPropagation();
     this.setState({ showSave: true });
+    this.setState({
+      navbarHidden: true
+    })
   };
 
   handleNavClick = event => {
@@ -149,7 +162,10 @@ class Layout1 extends React.Component {
   
   render() {
     return (
-    <div className="wrapper" style={{backgroundColor: this.state.background}}>
+    <div 
+      className="wrapper"
+      style={{backgroundColor: this.state.background}}
+    >
 
     <Modal show={this.state.showSave} onHide={this.handleCloseSave}>
           <Modal.Header closeButton className="modal-header">
@@ -195,6 +211,20 @@ class Layout1 extends React.Component {
             <Button onClick={this.handleCloseCSS}>Close</Button>
           </Modal.Footer>
         </Modal>
+
+        <Modal show={this.state.showHelp} onHide={this.handleCloseHelp}>
+          <Modal.Header closeButton className="modal-header">
+            <Modal.Title>Help</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="help">
+            <p>Click on the area you would like to change the color of. You can change the color of the navbar, left and right sidebars, and main content.</p>
+
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.handleCloseHelp}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+
     <SketchPicker
       className={this.state.navbarHidden ? "nav-color hide" : "nav-color"}
       name="navbar"
@@ -223,7 +253,11 @@ class Layout1 extends React.Component {
       onChangeComplete={ this.handleChangeLeftSidebar } 
       color={ this.state.left_sidebar }
     />
-    <nav className="navbar layout-nav" style={{backgroundColor: this.state.navbar}}>
+    <nav 
+      className="navbar layout-nav" 
+      onClick={this.handleNavClick}
+      style={{backgroundColor: this.state.navbar}}
+    >
       <div className="container-fluid">
         <div className="navbar-header">
           <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -249,44 +283,46 @@ class Layout1 extends React.Component {
           <a href="/profile">
           <button 
             className="nav-button"
+            onClick={e => e.stopPropagation()}
           >
           Back to Profile
           </button>
           </a>
-          <a href="#" className="hover"><span className="glyphicon glyphicon-nav glyphicon-bell"
-          onClick={this.handleNavClick}></span></a>
+
         </div>
       </div>
     </nav>
       
     <div className="container-fluid text-center">  
       <div className="row content">
-        <div className="col-sm-2 sidenav" style={{backgroundColor: this.state.left_sidebar}}>
+        <div 
+          className="col-sm-2 sidenav"
+          onClick={this.handleLeftClick}
+          style={{backgroundColor: this.state.left_sidebar}}
+          >
           <p>Link</p>
           <p>Link</p>
           <p>Link</p>
           <p>Link</p>
           <p>Link</p>
-          <a href="#" className="hover">
-          <span className="glyphicon glyphicon-left glyphicon-bell"
-          onClick={this.handleLeftClick}></span></a>
         </div>
-        <div className="col-sm-8 text-left"> 
-          <h1>Welcome <a href="#" className="hover">
-          <span className="glyphicon glyphicon-background glyphicon-bell"
-          onClick={this.handleBackgroundClick}></span></a></h1>
+        <div 
+          className="col-sm-8 text-left"
+          onClick={this.handleBackgroundClick}
+        > 
+          <h1>Welcome</h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
-        <div className="col-sm-2 sidenav" style={{backgroundColor: this.state.right_sidebar}}>
+        <div 
+          className="col-sm-2 sidenav" 
+          onClick={this.handleRightClick}
+          style={{backgroundColor: this.state.right_sidebar}}>
           <div className="well">
             <p>ADS</p>
           </div>
           <div className="well">
             <p>ADS</p>
           </div>
-          <a href="#" className="hover">
-          <span className="glyphicon glyphicon-nav glyphicon-bell"
-          onClick={this.handleRightClick}></span></a>
         </div>
       </div>
     </div>

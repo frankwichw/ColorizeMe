@@ -7,6 +7,11 @@
     text-align: left;
 }
 
+.help {
+    color: #000;
+    text-align: left; 
+}
+
 .modal-header {
     background-color: #eb6864;
 }
@@ -14,6 +19,7 @@
 .save-btn {
     background: #eb6864;
     border-color: #eb6864;
+    z-index: 5;
 }
 
 /* Remove the navbar's default margin-bottom and rounded borders */ 
