@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
 import GoogleLogin from 'react-google-login';
-import { GoogleLogout } from 'react-google-login';
-// import logout from "./logout.js";
 import ColorBox from "../../components/ColorBox/ColorBox.js";
 import { Modal, Button } from 'react-bootstrap';
 import CSS from "./Profile.css";
+import Navigation from "../../components/Navigation";
 
 class Profile extends Component {
   state = {
@@ -22,45 +21,51 @@ class Profile extends Component {
     this.renderData();
   }
 
+  
   renderData = () => {
+    // get user data from local storage 
     const user = localStorage.getItem('userData');
     const userInfo = JSON.parse(user);
     const userProviderId = userInfo.provider_id.toString();
     this.state.name = userInfo.name;
     this.state.googleId = userProviderId;
-    this.state.pic = userInfo.provider_pic ;
+    this.state.pic = userInfo.provider_pic;
+    // get color schemes based on user google id
     API.getUserColorSchemes(this.state.googleId)
       .then(res => {
-        console.log(res.status);
-        console.log(res.data);
+        // console.log(res.status);
         this.setState({ colorSchemes: res.data })
       })
       .catch(err => console.log(err));
   };
 
+  // logout function
   logout = () => {
     sessionStorage.removeItem('userData');
     localStorage.removeItem('userData');
   };
 
+  // close CSS modal
   handleCloseCSS = () => {
     this.setState({ showCSS: false });
   };
 
+  // show CSS modal
   handleShowCSS = scheme => {
     console.log(scheme);
     this.setState({currentScheme: scheme});
     this.setState({ showCSS: true });
   };
 
+  // delete color scheme
   deleteScheme = schemeId => {
     API.deleteColorScheme(schemeId)
     .then(res => {
-      console.log(res.status);
+      // console.log(res.status);
+      // redisplay color schemes based on new data
       API.getUserColorSchemes(this.state.googleId)
       .then(res => {
-        console.log(res.status);
-        console.log(res.data);
+        // console.log(res.status);
         this.setState({ colorSchemes: res.data })
       })
       .catch(err => console.log(err));
@@ -72,6 +77,9 @@ class Profile extends Component {
     
     return (
       <div>
+      <Navigation 
+        editButtons={this.props.editButtonsHidden} 
+      />
       <Modal show={this.state.showCSS} onHide={this.handleCloseCSS}>
         <Modal.Header closeButton className="modal-header">
           <Modal.Title>CSS</Modal.Title>

@@ -1,0 +1,13 @@
+.dropdown-menu-style {
+    background-color: #eb6864;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 25px;
+    margin-left: 25px;
+    float: right;
+}
+
+.wrapper-div {
+    display: inline-block;
+}

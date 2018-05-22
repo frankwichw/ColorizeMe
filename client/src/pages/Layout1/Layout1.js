@@ -5,6 +5,7 @@ import CSS from "./Layout1.css";
 import { SliderPicker, SketchPicker } from 'react-color';
 import { Modal, Button } from 'react-bootstrap';
 import { Input } from "../../components/Form/Input";
+import NavigationNew from "../../components/NavigationNew";
 
 class Layout1 extends React.Component {
   constructor(props) {
@@ -24,7 +25,8 @@ class Layout1 extends React.Component {
       showCSS: false,
       showSave: false,
       showHelp: true,
-      googleID: ""
+      googleID: "",
+      editButtonsHidden: "true"
     };
   };
 
@@ -60,35 +62,40 @@ class Layout1 extends React.Component {
     });
   };
 
+  // closes help modal
   handleCloseHelp = () => {
     this.setState({ showHelp: false });
   };
 
-  // 
+  // shows help modal
+  handleShowHelp = (e) => {
+    e.stopPropagation();
+    this.setState({ showHelp: true });
+  };
+
+  // closes CSS modal
   handleCloseCSS = () => {
     this.setState({ showCSS: false });
   };
 
+  // shows CSS modal
   handleShowCSS = (e) => {
     e.stopPropagation();
     this.setState({ showCSS: true });
   };
 
+  // closes save modal
   handleCloseSave = () => {
     this.setState({ showSave: false });
   };
 
+  // shows save modal
   handleShowSave = (e) => {
     e.stopPropagation();
     this.setState({ showSave: true });
   };
 
-
-  handleGetCSS = event => {
-    event.preventDefault();
-    this.handleShow();
-  };
-
+  // showing or hiding color palette for navbar
   handleNavClick = event => {
     if (this.state.navbarHidden){
       this.setState({
@@ -101,6 +108,7 @@ class Layout1 extends React.Component {
     }
   };
 
+  // showing or hiding color palette for background
   handleBackgroundClick = event => {
     if (this.state.backgroundHidden){
       this.setState({
@@ -113,6 +121,7 @@ class Layout1 extends React.Component {
     }
   };
 
+  // showing or hiding color palette for left sidebar
   handleLeftClick = event => {
     if (this.state.leftSidebarHidden){
       this.setState({
@@ -125,6 +134,7 @@ class Layout1 extends React.Component {
     }
   };
 
+  // showing or hiding color palette for right sidebar
   handleRightClick = event => {
     if (this.state.rightSidebarHidden){
       this.setState({
@@ -137,18 +147,22 @@ class Layout1 extends React.Component {
     }
   };
 
+  // setting state of navbar color
   handleChangeNavbar = ({hex}) => {
     this.setState({ navbar: hex });
   };
 
+  // setting state of background color
   handleChangeBackground = ({hex}) => {
     this.setState({ background: hex });
   };
 
+  // setting state of right sidebar color
   handleChangeRightSidebar = ({hex}) => {
     this.setState({ right_sidebar: hex });
   };
 
+  // setting state of left sidebar color
   handleChangeLeftSidebar = ({hex}) => {
     this.setState({ left_sidebar: hex });
   };
@@ -156,6 +170,12 @@ class Layout1 extends React.Component {
   render() {
     return (
     <div className="wrapper" style={{backgroundColor: this.state.background}}>
+
+    <NavigationNew
+        handleShowSave={this.handleShowSave} 
+        handleShowCSS={this.handleShowCSS}
+        handleShowHelp={this.handleShowHelp}
+    />
 
     <Modal show={this.state.showSave} onHide={this.handleCloseSave}>
           <Modal.Header closeButton className="modal-header">
@@ -264,20 +284,6 @@ class Layout1 extends React.Component {
             <li className="list-items">Projects</li>
             <li className="list-items">Contact</li>
           </ul>
-          <Button className="nav-button" onClick={this.handleShowSave}>
-          Save
-          </Button> 
-          <Button className="nav-button" onClick={this.handleShowCSS}>
-          CSS
-          </Button>
-          <a href="/profile">
-          <button 
-            className="nav-button"
-            onClick={e => e.stopPropagation()}
-          >
-          Back to Profile
-          </button>
-          </a>
 
         </div>
       </div>

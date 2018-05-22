@@ -13,7 +13,6 @@ import CSS from "./App.css";
 const App = () => (
   <Router>
     <div>
-      <Navigation />
       <Switch>
         <Route exact path="/" component={Main} />
         <Route exact path="/layout1" component={Layout1} />

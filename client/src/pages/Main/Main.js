@@ -6,6 +6,7 @@ import {Redirect} from 'react-router-dom';
 import API from "../../utils/API";
 import CSS from "./Main.css";
 import keys from "./keys.js";
+import Navigation from "../../components/Navigation";
 
 class Main extends Component {
   constructor(props) {
@@ -13,11 +14,13 @@ class Main extends Component {
        this.state = {
        loginError: false,
        redirect: false,
-       redirect_url: ""
+       redirect_url: "",
+       editButtonsHidden: "true"
       };
     this.signup = this.signup.bind(this);
   }
 
+  // grabbing user data object if user hasn't signed up yet
   signup = (res, type) => {
     let postData;
     if (type === 'google' && res.w3.U3) {
@@ -32,6 +35,7 @@ class Main extends Component {
       
     }
 
+  // if postData exists, execute PostData function and set the sessionStorage to userData
   if (postData) {
     PostData('signup', postData).then((result) => {
        let responseJson = result;
@@ -41,6 +45,7 @@ class Main extends Component {
     } else {}
   };
 
+  // redirect to profile if there is userData in the sessionStorage
   render() {
     if (sessionStorage.getItem('userData')) {
       return (<Redirect to={'/profile'}/>)
@@ -52,6 +57,9 @@ class Main extends Component {
     }
     return (
       <div>
+      <Navigation 
+        editButtons={this.props.editButtonsHidden} 
+      />
       <div className="jumbotron main-jumbo">
       <h2 className="auth-user"><a href="#" className="login">
       <GoogleLogin

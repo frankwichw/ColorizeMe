@@ -5,6 +5,7 @@ import CSS from "./Layout1Edit.css";
 import { SliderPicker, SketchPicker } from 'react-color';
 import { Modal, Button } from 'react-bootstrap';
 import { Input } from "../../components/Form/Input";
+import NavigationEdit from "../../components/NavigationEdit";
 
 class Layout1 extends React.Component {
   constructor(props) {
@@ -25,11 +26,14 @@ class Layout1 extends React.Component {
       leftSidebarHidden: true,
       showCSS: false,
       showSave: false,
-      showHelp: true
+      showHelp: true,
+      editButtonsHidden: "false"
     };
   };
 
+  // on all components load, load color scheme
   componentDidMount() {
+    // get id of color scheme from url
     const id = this.props.match.params.id;
     API.getcolorScheme(id)
       .then(res => {
@@ -67,27 +71,34 @@ class Layout1 extends React.Component {
     });
   };
 
-
+  // closes help modal
   handleCloseHelp = () => {
     this.setState({ showHelp: false });
   };
-  // 
+
+  // closes CSS modal
   handleCloseCSS = () => {
     this.setState({ showCSS: false });
   };
 
+  // shows CSS modal
   handleShowCSS = (e) => {
     e.stopPropagation();
     this.setState({ showCSS: true });
-    this.setState({
-      navbarHidden: true
-    })
   };
 
+  // shows help modal
+  handleShowHelp = (e) => {
+    e.stopPropagation();
+    this.setState({ showHelp: true });
+  };
+
+  // closes save modal
   handleCloseSave = () => {
     this.setState({ showSave: false });
   };
 
+  // shows save modal
   handleShowSave = (e) => {
     e.stopPropagation();
     this.setState({ showSave: true });
@@ -96,6 +107,7 @@ class Layout1 extends React.Component {
     })
   };
 
+  // showing or hiding color palette for navbar
   handleNavClick = event => {
     if (this.state.navbarHidden){
       this.setState({
@@ -108,6 +120,7 @@ class Layout1 extends React.Component {
     }
   };
 
+  // showing or hiding color palette for background
   handleBackgroundClick = event => {
     if (this.state.backgroundHidden){
       this.setState({
@@ -120,6 +133,7 @@ class Layout1 extends React.Component {
     }
   };
 
+  // showing or hiding color palette for left sidebar
   handleLeftClick = event => {
     if (this.state.leftSidebarHidden){
       this.setState({
@@ -132,6 +146,7 @@ class Layout1 extends React.Component {
     }
   };
 
+  // showing or hiding color palette for right sidebar
   handleRightClick = event => {
     if (this.state.rightSidebarHidden){
       this.setState({
@@ -144,18 +159,22 @@ class Layout1 extends React.Component {
     }
   };
 
+  // setting state of navbar color
   handleChangeNavbar = ({hex}) => {
     this.setState({ navbar: hex });
   };
 
+  // setting state of background color
   handleChangeBackground = ({hex}) => {
     this.setState({ background: hex });
   };
 
+  // setting state of right sidebar color
   handleChangeRightSidebar = ({hex}) => {
     this.setState({ right_sidebar: hex });
   };
 
+  // setting state of left sidebar color
   handleChangeLeftSidebar = ({hex}) => {
     this.setState({ left_sidebar: hex });
   };
@@ -166,7 +185,11 @@ class Layout1 extends React.Component {
       className="wrapper"
       style={{backgroundColor: this.state.background}}
     >
-
+    <NavigationEdit 
+        handleShowSave={this.handleShowSave} 
+        handleShowCSS={this.handleShowCSS}
+        handleShowHelp={this.handleShowHelp}
+    />
     <Modal show={this.state.showSave} onHide={this.handleCloseSave}>
           <Modal.Header closeButton className="modal-header">
             <Modal.Title>Save Color Scheme</Modal.Title>
@@ -274,20 +297,6 @@ class Layout1 extends React.Component {
             <li className="list-items">Projects</li>
             <li className="list-items">Contact</li>
           </ul>
-          <Button className="nav-button" onClick={this.handleShowSave}>
-          Save
-          </Button> 
-          <Button className="nav-button" onClick={this.handleShowCSS}>
-          CSS
-          </Button>
-          <a href="/profile">
-          <button 
-            className="nav-button"
-            onClick={e => e.stopPropagation()}
-          >
-          Back to Profile
-          </button>
-          </a>
 
         </div>
       </div>
