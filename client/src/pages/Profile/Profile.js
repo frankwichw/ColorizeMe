@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import API from "../../utils/API";
 import GoogleLogin from 'react-google-login';
 import ColorBox from "../../components/ColorBox/ColorBox.js";
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, DropdownButton, MenuItem } from 'react-bootstrap';
 import CSS from "./Profile.css";
 import Navigation from "../../components/Navigation";
 
@@ -113,6 +113,33 @@ class Profile extends Component {
         New Color scheme
         </button>
         </a>
+
+        <DropdownButton
+        //   bsStyle={title.toLowerCase()}
+          bsStyle="New Color Scheme"
+          title="New Color Scheme"
+          key="key"
+          className="dropdown-menu-style"
+        >
+          <MenuItem 
+            eventKey="1"
+            // onClick={}
+          >
+            <Link to="/layout1">Layout Style One</Link>
+          </MenuItem>
+          <MenuItem 
+            eventKey="2"
+            // onClick={}
+          >
+            <Link to="/layout2">Layout Style Two</Link>
+          </MenuItem>
+          {/* <MenuItem divider />
+          <MenuItem eventKey="4">
+          <Link to="/profile">Back to Profile</Link>
+          </MenuItem> */}
+        </DropdownButton>
+
+
         <Link to={"/"}>
         <button
             className="login color-box-btn login-button logout-button inline"

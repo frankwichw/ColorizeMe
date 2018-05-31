@@ -5,6 +5,7 @@ import CSS from "./Layout2.css";
 import { SliderPicker, SketchPicker } from 'react-color';
 import { Modal, Button } from 'react-bootstrap';
 import { Input } from "../../components/Form/Input";
+import NavigationNew from "../../components/NavigationNew";
 
 class Layout2 extends React.Component {
   constructor(props) {
@@ -157,7 +158,11 @@ class Layout2 extends React.Component {
   render() {
     return (
       <div className="wrapper" style={{backgroundColor: this.state.background}}>
-    
+          <NavigationNew
+              handleShowSave={this.handleShowSave} 
+              handleShowCSS={this.handleShowCSS}
+              handleShowHelp={this.handleShowHelp}
+          />
         <Modal show={this.state.showSave} onHide={this.handleCloseSave}>
               <Modal.Header closeButton className="modal-header">
                 <Modal.Title>Save Color Scheme</Modal.Title>
