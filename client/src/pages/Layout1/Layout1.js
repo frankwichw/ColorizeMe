@@ -37,7 +37,7 @@ class Layout1 extends React.Component {
     var providerID = userData.provider_id;
 
     if (this.state.title){
-      API.saveColorScheme({
+      API.saveColorScheme1({
         title: this.state.title,
         google_id: providerID,
         layout_type: this.state.layout_type,

@@ -20,6 +20,10 @@ footer {
     padding: 15px;
 }
 
+.row.content {
+    height: 800px;
+}
+
 /* On small screens, set height to 'auto' for sidenav and grid */
 @media screen and (max-width: 767px) {
     .sidenav {

@@ -40,3 +40,19 @@
     color: white;
     margin-right: 15px;
 }
+
+.dropdown-menu-style {
+    background-color: #eb6864;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-right: 25px;
+    margin-top: 0px;
+    border-radius: 0px;
+}
+
+.btn-group>.btn:first-child {
+    margin-left: 0;
+    margin-top: 0px;
+}

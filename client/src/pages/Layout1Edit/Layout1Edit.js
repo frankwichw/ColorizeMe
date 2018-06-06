@@ -35,7 +35,7 @@ class Layout1 extends React.Component {
   componentDidMount() {
     // get id of color scheme from url
     const id = this.props.match.params.id;
-    API.getcolorScheme(id)
+    API.getcolorScheme1(id)
       .then(res => {
         console.log(res.status);
         this.setState({ title: res.data.title, googleID: res.data.google_id, background: res.data.background, navbar: res.data.navbar, right_sidebar: res.data.right_sidebar, left_sidebar: res.data.left_sidebar, colorSchemeId: res.data._id});
@@ -46,7 +46,7 @@ class Layout1 extends React.Component {
   // handle saving color scheme through api route
   handleSave = () => {
     if (this.state.title){
-      API.updateColorScheme(this.state.colorSchemeId, {
+      API.updateColorScheme1(this.state.colorSchemeId, {
         title: this.state.title,
         google_id: this.state.googleID,
         layout_type: this.state.layout_type,

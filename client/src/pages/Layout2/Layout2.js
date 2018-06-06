@@ -12,14 +12,12 @@ class Layout2 extends React.Component {
     super(props);
     this.state = {
       title: "",
-      layout_type: "layout1",
+      layout_type: "layout2",
       displayColorPicker: true,
       background: "#fff",
       backgroundHidden: true,
       navbar: "#f1f1f1",
       navbarHidden: true,
-      right_sidebar: "#f1f1f1",
-      rightSidebarHidden: true,
       left_sidebar: "#f1f1f1",
       leftSidebarHidden: true,
       showCSS: false,
@@ -36,13 +34,11 @@ class Layout2 extends React.Component {
     var providerID = userData.provider_id;
 
     if (this.state.title){
-      API.saveColorScheme({
+      API.saveColorScheme2({
         title: this.state.title,
         google_id: providerID,
         layout_type: this.state.layout_type,
         background: this.state.background,
-        navbar: this.state.navbar,
-        right_sidebar: this.state.right_sidebar,
         left_sidebar: this.state.left_sidebar
       })
         .catch(err => console.log(err));
@@ -64,6 +60,13 @@ class Layout2 extends React.Component {
   handleCloseHelp = () => {
     this.setState({ showHelp: false });
   };
+
+    // shows help modal
+    handleShowHelp = (e) => {
+      e.stopPropagation();
+      this.setState({ showHelp: true });
+    };
+  
 
   // 
   handleCloseCSS = () => {
@@ -138,16 +141,8 @@ class Layout2 extends React.Component {
     }
   };
 
-  handleChangeNavbar = ({hex}) => {
-    this.setState({ navbar: hex });
-  };
-
   handleChangeBackground = ({hex}) => {
     this.setState({ background: hex });
-  };
-
-  handleChangeRightSidebar = ({hex}) => {
-    this.setState({ right_sidebar: hex });
   };
 
   handleChangeLeftSidebar = ({hex}) => {
@@ -157,7 +152,9 @@ class Layout2 extends React.Component {
 
   render() {
     return (
-      <div className="wrapper" style={{backgroundColor: this.state.background}}>
+      <div className="wrapper"
+        style={{backgroundColor: this.state.background}}
+      >
           <NavigationNew
               handleShowSave={this.handleShowSave} 
               handleShowCSS={this.handleShowCSS}
@@ -213,7 +210,7 @@ class Layout2 extends React.Component {
                 <Modal.Title>Help</Modal.Title>
               </Modal.Header>
               <Modal.Body className="help">
-                <p>Click on the area you would like to change the color of. You can change the color of the navbar, left and right sidebars, and main content.</p>
+                <p>Click on the area you would like to change the color of. You can change the color of the left sidebar, and main content.</p>
     
               </Modal.Body>
               <Modal.Footer>
@@ -222,25 +219,11 @@ class Layout2 extends React.Component {
             </Modal>
     
         <SketchPicker
-          className={this.state.navbarHidden ? "nav-color hide" : "nav-color"}
-          name="navbar"
-          hide-value={this.state.navbarHidden}
-          onChange={ this.handleChangeNavbar } 
-          color={ this.state.navbar }
-        />
-        <SketchPicker
           className={this.state.backgroundHidden ? "nav-color hide" : "nav-color"}
           name="background"
           hide-value={this.state.backgroundHidden}
           onChange={ this.handleChangeBackground } 
           color={ this.state.background }
-        />
-        <SketchPicker
-          className={this.state.rightSidebarHidden ? "nav-color hide" : "nav-color"}
-          name="right_sidebar"
-          hide-value={this.state.rightSidebarHidden}
-          onChange={ this.handleChangeRightSidebar } 
-          color={ this.state.right_sidebar }
         />
         <SketchPicker
           className={this.state.leftSidebarHidden ? "nav-color hide" : "nav-color"}
@@ -250,27 +233,33 @@ class Layout2 extends React.Component {
           color={ this.state.left_sidebar }
         />
 
-        <div class="container-fluid">
-          <div class="row content">
-            <div class="col-sm-3 sidenav">
+        <div className="container-fluid">
+          <div className="row content">
+            <div 
+              className="col-sm-3 sidenav"
+              style={{backgroundColor: this.state.left_sidebar}}
+              onClick={this.handleLeftClick}
+            >
               <h4>Your Blog</h4>
-              <ul class="nav nav-pills nav-stacked">
-                <li class="active">Home</li>
+              <ul className="nav nav-pills nav-stacked">
+                <li className="active">Home</li>
                 <li>Friends</li>
                 <li>Family</li>
                 <li>Photos</li>
               </ul><br />
-              <div class="input-group">
+              <div className="input-group">
                 <input type="text" class="form-control" placeholder="Search Blog.." />
-                <span class="input-group-btn">
-                  <button class="btn btn-default" type="button">
-                    <span class="glyphicon glyphicon-search"></span>
+                <span className="input-group-btn">
+                  <button className="btn btn-default" type="button">
+                    <span className="glyphicon glyphicon-search"></span>
                   </button>
                 </span>
               </div>
             </div>
 
-            <div class="col-sm-9">
+            <div class="col-sm-9"
+              onClick={this.handleBackgroundClick}
+            >
               <h4><small>RECENT POSTS</small></h4>
               <hr />
               <h2>Post Title</h2>
