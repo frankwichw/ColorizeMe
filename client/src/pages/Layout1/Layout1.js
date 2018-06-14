@@ -105,7 +105,10 @@ class Layout1 extends React.Component {
   handleNavClick = () => {
     if (this.state.navbarHidden){
       this.setState({
-        navbarHidden: false
+        navbarHidden: false,
+        backgroundHidden: true,
+        rightSidebarHidden: true,
+        leftSidebarHidden: true
       })
     } else {
       this.setState({
@@ -118,7 +121,10 @@ class Layout1 extends React.Component {
   handleBackgroundClick = () => {
     if (this.state.backgroundHidden){
       this.setState({
-        backgroundHidden: false
+        backgroundHidden: false,
+        navbarHidden: true,
+        rightSidebarHidden: true,
+        leftSidebarHidden: true
       })
     } else {
       this.setState({
@@ -131,7 +137,10 @@ class Layout1 extends React.Component {
   handleLeftClick = () => {
     if (this.state.leftSidebarHidden){
       this.setState({
-        leftSidebarHidden: false
+        leftSidebarHidden: false,
+        navbarHidden: true,
+        backgroundHidden: true,
+        rightSidebarHidden: true
       })
     } else {
       this.setState({
@@ -144,7 +153,10 @@ class Layout1 extends React.Component {
   handleRightClick = () => {
     if (this.state.rightSidebarHidden){
       this.setState({
-        rightSidebarHidden: false
+        rightSidebarHidden: false,
+        navbarHidden: true,
+        backgroundHidden: true,
+        leftSidebarHidden: true
       })
     } else {
       this.setState({

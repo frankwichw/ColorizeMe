@@ -173,20 +173,16 @@ class Profile extends Component {
         >
           <MenuItem 
             eventKey="1"
-            // onClick={}
+            onClick={() => window.location.assign('/layout1')}
           >
-            <Link to="/layout1">Three Column Layout</Link>
+            Three Column Layout
           </MenuItem>
           <MenuItem 
             eventKey="2"
-            // onClick={}
+            onClick={() => window.location.assign('/layout2')}
           >
-            <Link to="/layout2">Blog Style Layout</Link>
+            Blog Style Layout
           </MenuItem>
-          {/* <MenuItem divider />
-          <MenuItem eventKey="4">
-          <Link to="/profile">Back to Profile</Link>
-          </MenuItem> */}
         </DropdownButton>
 
 

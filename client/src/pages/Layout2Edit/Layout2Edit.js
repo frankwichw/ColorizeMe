@@ -103,7 +103,8 @@ class Layout2 extends React.Component {
   handleBackgroundClick = event => {
     if (this.state.backgroundHidden){
       this.setState({
-        backgroundHidden: false
+        backgroundHidden: false,
+        leftSidebarHidden: true
       })
     } else {
       this.setState({
@@ -116,7 +117,8 @@ class Layout2 extends React.Component {
   handleLeftClick = event => {
     if (this.state.leftSidebarHidden){
       this.setState({
-        leftSidebarHidden: false
+        leftSidebarHidden: false,
+        backgroundHidden: true
       })
     } else {
       this.setState({
