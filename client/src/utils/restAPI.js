@@ -4,7 +4,7 @@ export function PostData(type, userData) {
     localStorage.setItem("userData", JSON.stringify(userData));
     var user = localStorage.getItem('userData');
     // let BaseURL = 'http://localhost:3000/api/';
-    let BaseURL = 'https://colorizeme.herokuapp.com/api/';
+    let BaseURL = 'www.colorizeme.net/api/';
     
     return new Promise((resolve, reject) =>{
         fetch(BaseURL+type, {
