@@ -22,7 +22,7 @@ const EditButtons = props => (
         eventKey="2"
         onClick={props.handleShowCSS}
       >
-        CSS
+        Get CSS
       </MenuItem>
       <MenuItem 
         eventKey="3"
