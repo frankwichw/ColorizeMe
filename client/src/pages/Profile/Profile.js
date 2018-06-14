@@ -126,16 +126,16 @@ class Profile extends Component {
         </Modal.Header>
         <Modal.Body className="modal-css-1">
           {".background {"}<br />
-          {"background-color: " + this.state.currentLayout1Scheme.background + ";"}<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;{"background-color: " + this.state.currentLayout1Scheme.background + ";"}<br />
           {"}"}<br />
           {".navbar {"}<br />
-          {"background-color: " + this.state.currentLayout1Scheme.navbar + ";"}<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;{"background-color: " + this.state.currentLayout1Scheme.navbar + ";"}<br />
           {"}"}<br />
           {".left-sidebar {"}<br />
-          {"background-color: " + this.state.currentLayout1Scheme.left_sidebar + ";"}<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;{"background-color: " + this.state.currentLayout1Scheme.left_sidebar + ";"}<br />
           {"}"}<br />
           {".right-sidebar {"}<br />
-          {"background-color: " + this.state.currentLayout1Scheme.right_sidebar + ";"}<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;{"background-color: " + this.state.currentLayout1Scheme.right_sidebar + ";"}<br />
           {"}"}
 
         </Modal.Body>
@@ -150,10 +150,10 @@ class Profile extends Component {
         </Modal.Header>
         <Modal.Body className="modal-css-1">
           {".background {"}<br />
-          {"background-color: " + this.state.currentLayout2Scheme.background + ";"}<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;{"background-color: " + this.state.currentLayout2Scheme.background + ";"}<br />
           {"}"}<br />
           {".left-sidebar {"}<br />
-          {"background-color: " + this.state.currentLayout2Scheme.left_sidebar + ";"}<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;{"background-color: " + this.state.currentLayout2Scheme.left_sidebar + ";"}<br />
           {"}"}<br />
         </Modal.Body>
         <Modal.Footer>
@@ -162,10 +162,10 @@ class Profile extends Component {
       </Modal>
       
         <div className="jumbotron profile-jumbo"><br /><br />
-        <h1 class="users-name">{this.state.name}  {/* <img src={this.state.pic} class="user-pic"/>*/}</h1> 
+        <h1 className="users-name">{this.state.name}  {/* <img src={this.state.pic} class="user-pic"/>*/}</h1> 
 
         <DropdownButton
-        //   bsStyle={title.toLowerCase()}
+          // bsStyle={title.toLowerCase()}
           bsStyle="New Color Scheme"
           title="New Color Scheme"
           key="key"
@@ -175,13 +175,13 @@ class Profile extends Component {
             eventKey="1"
             // onClick={}
           >
-            <Link to="/layout1">Layout Style One</Link>
+            <Link to="/layout1">Three Column Layout</Link>
           </MenuItem>
           <MenuItem 
             eventKey="2"
             // onClick={}
           >
-            <Link to="/layout2">Layout Style Two</Link>
+            <Link to="/layout2">Blog Style Layout</Link>
           </MenuItem>
           {/* <MenuItem divider />
           <MenuItem eventKey="4">
@@ -192,7 +192,7 @@ class Profile extends Component {
 
         <Link to={"/"}>
         <button
-            className="login color-box-btn login-button logout-button inline"
+            className="logout-button inline"
             onClick={this.logout}
         >
         Logout
@@ -203,12 +203,12 @@ class Profile extends Component {
         <div className="row">
           <div className="col-xl-2 col-lg-2 col-md-2"></div>
           <div className="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9">
-            <h2>Style One Schemes</h2>
+            <h2>Three Column Color Schemes</h2>
               <div className="row color-box-row">
               {this.state.layout1ColorSchemes.map(scheme => (
                 <ColorBox 
                   key={scheme._id}
-                  boxID={scheme._id}
+                  boxID={"layout1/" + scheme._id}
                   title={scheme.title}
                   header={scheme.navbar}
                   background={scheme.background}
@@ -223,12 +223,12 @@ class Profile extends Component {
         <div className="row">
           <div className="col-xl-2 col-lg-2 col-md-2"></div>
           <div className="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9">
-            <h2>Style Two Schemes</h2>
-              <div className="row color-box-row">
+            <h2>Blog Style Color Schemes</h2>
+              <div className="row color-box-row bottom-row">
               {this.state.layout2ColorSchemes.map(scheme => (
                 <ColorBox 
                   key={scheme._id}
-                  boxID={scheme._id}
+                  boxID={"layout2/" + scheme._id}
                   title={scheme.title}
                   header={scheme.left_sidebar}
                   background={scheme.background}

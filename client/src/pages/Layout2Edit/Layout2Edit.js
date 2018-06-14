@@ -1,40 +1,48 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
-import CSS from "./Layout2.css";
-import { SliderPicker, SketchPicker } from 'react-color';
+import CSS from "./Layout2Edit.css";
+import { SketchPicker } from 'react-color';
 import { Modal, Button } from 'react-bootstrap';
 import { Input } from "../../components/Form/Input";
 import NavigationNew from "../../components/NavigationNew";
 
 class Layout2 extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: "",
-      layout_type: "layout2",
-      displayColorPicker: true,
-      background: "#fff",
-      backgroundHidden: true,
-      left_sidebar: "#f1f1f1",
-      leftSidebarHidden: true,
-      showCSS: false,
-      showSave: false,
-      showHelp: true,
-      googleID: ""
+    constructor(props) {
+        super(props);
+        this.state = {
+            title: "",
+            layout_type: "layout2",
+            displayColorPicker: true,
+            background: "#fff",
+            backgroundHidden: true,
+            left_sidebar: "#f1f1f1",
+            leftSidebarHidden: true,
+            showCSS: false,
+            showSave: false,
+            showHelp: true,
+            googleID: ""
+        };
     };
+
+  // on all components load, load color scheme
+  componentDidMount() {
+    // get id of color scheme from url
+    const id = this.props.match.params.id;
+    API.getcolorScheme2(id)
+      .then(res => {
+        console.log(res.status);
+        this.setState({ title: res.data.title, googleID: res.data.google_id, background: res.data.background, navbar: res.data.navbar, left_sidebar: res.data.left_sidebar, colorSchemeId: res.data._id});
+      })
+      .catch(err => console.log(err));
   };
 
   // handle saving color scheme through api route
   handleSave = () => {
-    var user = localStorage.getItem('userData');
-    var userData = JSON.parse(user);
-    var providerID = userData.provider_id;
-
     if (this.state.title){
-      API.saveColorScheme2({
+      API.updateColorScheme2(this.state.colorSchemeId, {
         title: this.state.title,
-        google_id: providerID,
+        google_id: this.state.googleID,
         layout_type: this.state.layout_type,
         background: this.state.background,
         left_sidebar: this.state.left_sidebar
@@ -55,54 +63,43 @@ class Layout2 extends React.Component {
     });
   };
 
+  // closes help modal
   handleCloseHelp = () => {
     this.setState({ showHelp: false });
   };
 
-    // shows help modal
-    handleShowHelp = (e) => {
-      e.stopPropagation();
-      this.setState({ showHelp: true });
-    };
-  
-
-  // 
+  // closes CSS modal
   handleCloseCSS = () => {
     this.setState({ showCSS: false });
   };
 
+  // shows CSS modal
   handleShowCSS = (e) => {
     e.stopPropagation();
     this.setState({ showCSS: true });
   };
 
+  // shows help modal
+  handleShowHelp = (e) => {
+    e.stopPropagation();
+    this.setState({ showHelp: true });
+  };
+
+  // closes save modal
   handleCloseSave = () => {
     this.setState({ showSave: false });
   };
 
+  // shows save modal
   handleShowSave = (e) => {
     e.stopPropagation();
     this.setState({ showSave: true });
+    this.setState({
+      navbarHidden: true
+    })
   };
 
-
-  handleGetCSS = event => {
-    event.preventDefault();
-    this.handleShow();
-  };
-
-  handleNavClick = event => {
-    if (this.state.navbarHidden){
-      this.setState({
-        navbarHidden: false
-      })
-    } else {
-      this.setState({
-        navbarHidden: true
-      })
-    }
-  };
-
+  // showing or hiding color palette for background
   handleBackgroundClick = event => {
     if (this.state.backgroundHidden){
       this.setState({
@@ -115,6 +112,7 @@ class Layout2 extends React.Component {
     }
   };
 
+  // showing or hiding color palette for left sidebar
   handleLeftClick = event => {
     if (this.state.leftSidebarHidden){
       this.setState({
@@ -127,27 +125,16 @@ class Layout2 extends React.Component {
     }
   };
 
-  handleRightClick = event => {
-    if (this.state.rightSidebarHidden){
-      this.setState({
-        rightSidebarHidden: false
-      })
-    } else {
-      this.setState({
-        rightSidebarHidden: true
-      })
-    }
-  };
-
+  // setting state of background color
   handleChangeBackground = ({hex}) => {
     this.setState({ background: hex });
   };
 
+  // setting state of left sidebar color
   handleChangeLeftSidebar = ({hex}) => {
     this.setState({ left_sidebar: hex });
   };
   
-
   render() {
     return (
       <div className="wrapper"
@@ -190,7 +177,6 @@ class Layout2 extends React.Component {
                 {".left-sidebar {"}<br />
                 &nbsp;&nbsp;&nbsp;&nbsp;{"background-color: " + this.state.left_sidebar + ";"}<br />
                 {"}"}
-    
               </Modal.Body>
               <Modal.Footer>
                 <Button onClick={this.handleCloseCSS}>Close</Button>

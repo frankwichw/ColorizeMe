@@ -10,7 +10,7 @@ const EditButtons = props => (
       bsStyle="Edit"
       title="Edit"
       key="key"
-      className="dropdown-menu-style"
+      className="dropdown-menu-stylized"
     >
       <MenuItem 
         eventKey="1"
@@ -30,9 +30,11 @@ const EditButtons = props => (
       >
         Help
       </MenuItem>
-      <MenuItem divider />
-      <MenuItem eventKey="4">
-      <Link to="/profile">Back to Profile</Link>
+      <MenuItem 
+        eventKey="4"
+        onClick={() => window.location.assign('/profile')}
+      >
+        Back to Profile
       </MenuItem>
     </DropdownButton>
     </div>

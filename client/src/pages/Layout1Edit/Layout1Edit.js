@@ -217,16 +217,16 @@ class Layout1 extends React.Component {
           </Modal.Header>
           <Modal.Body className="modal-css">
             {".background {"}<br />
-            {"background-color: " + this.state.background + ";"}<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;{"background-color: " + this.state.background + ";"}<br />
             {"}"}<br />
             {".navbar {"}<br />
-            {"background-color: " + this.state.navbar + ";"}<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;{"background-color: " + this.state.navbar + ";"}<br />
             {"}"}<br />
             {".left-sidebar {"}<br />
-            {"background-color: " + this.state.left_sidebar + ";"}<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;{"background-color: " + this.state.left_sidebar + ";"}<br />
             {"}"}<br />
             {".right-sidebar {"}<br />
-            {"background-color: " + this.state.right_sidebar + ";"}<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;{"background-color: " + this.state.right_sidebar + ";"}<br />
             {"}"}
 
           </Modal.Body>

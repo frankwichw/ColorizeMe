@@ -25,6 +25,7 @@ export default {
   // **** layout 2 **** //
   // get all layout2 color schemes
   getUserColorSchemes2: function(googleId) {
+    console.log("getting to get all color schemes for layout 2");
     return axios.get("/api/layout2/all/" + googleId);
   },
   // get layout1 scheme with specific id
@@ -37,6 +38,7 @@ export default {
   },
   // saves layout1 scheme to database
   saveColorScheme2: function(layout2Data) {
+    console.log("getting to save color schemes for layout 2");
     return axios.post("/api/layout2", layout2Data);
   },
   // updates layout1 color scheme

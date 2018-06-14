@@ -1,4 +1,4 @@
-.dropdown-menu-style {
+.dropdown-menu {
     background-color: #eb6864;
     text-decoration: none;
     font-size: 18px;
@@ -10,4 +10,15 @@
 
 .wrapper-div {
     display: inline-block;
+}
+
+.btn-group>.btn:first-child {
+    margin-top: 27px;
+}
+
+@media only screen and (max-width: 767px) {
+    .btn-group>.btn:first-child {
+        margin-top: 0px;
+        margin-bottom: 20px;
+    }
 }

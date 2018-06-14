@@ -22,6 +22,12 @@ class Layout1 extends React.Component {
       rightSidebarHidden: true,
       left_sidebar: "#f1f1f1",
       leftSidebarHidden: true,
+      navbar_text: "#000",
+      navbarTextHidden: true,
+      left_sidebar_text: "#000",
+      leftSidebarTextHidden: true,
+      main_text: "#000",
+      mainTextHidden: true,
       showCSS: false,
       showSave: false,
       showHelp: true,
@@ -96,7 +102,7 @@ class Layout1 extends React.Component {
   };
 
   // showing or hiding color palette for navbar
-  handleNavClick = event => {
+  handleNavClick = () => {
     if (this.state.navbarHidden){
       this.setState({
         navbarHidden: false
@@ -109,7 +115,7 @@ class Layout1 extends React.Component {
   };
 
   // showing or hiding color palette for background
-  handleBackgroundClick = event => {
+  handleBackgroundClick = () => {
     if (this.state.backgroundHidden){
       this.setState({
         backgroundHidden: false
@@ -122,7 +128,7 @@ class Layout1 extends React.Component {
   };
 
   // showing or hiding color palette for left sidebar
-  handleLeftClick = event => {
+  handleLeftClick = () => {
     if (this.state.leftSidebarHidden){
       this.setState({
         leftSidebarHidden: false
@@ -135,7 +141,7 @@ class Layout1 extends React.Component {
   };
 
   // showing or hiding color palette for right sidebar
-  handleRightClick = event => {
+  handleRightClick = () => {
     if (this.state.rightSidebarHidden){
       this.setState({
         rightSidebarHidden: false
@@ -143,6 +149,51 @@ class Layout1 extends React.Component {
     } else {
       this.setState({
         rightSidebarHidden: true
+      })
+    }
+  };
+
+  // changing navbar text
+  handleNavText = e => {
+    e.stopPropagation(); 
+    if (this.state.navbarTextHidden){
+      this.setState({
+        navbarTextHidden: false
+      })
+    } else {
+      this.setState({
+        navbarTextHidden: true
+      })
+    }
+  };
+
+  pullUpPicker = () => {
+    if (this.state.leftSidebarTextHidden){
+      this.setState({
+        leftSidebarTextHidden: false
+      })
+    } else {
+      this.setState({
+        leftSidebarTextHidden: true
+      })
+    }
+  };
+  // changing left sidebar text
+  handleLeftText = event => {
+    event.stopPropagation(); 
+    this.pullUpPicker();
+  };
+
+  // changing main text
+  handleMainText = e => {
+    // e.stopPropagation(); 
+    if (this.state.mainTextHidden){
+      this.setState({
+        mainTextHidden: false
+      })
+    } else {
+      this.setState({
+        mainTextHidden: true
       })
     }
   };
@@ -204,16 +255,16 @@ class Layout1 extends React.Component {
           </Modal.Header>
           <Modal.Body className="modal-css">
             {".background {"}<br />
-            {"background-color: " + this.state.background + ";"}<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;{"background-color: " + this.state.background + ";"}<br />
             {"}"}<br />
             {".navbar {"}<br />
-            {"background-color: " + this.state.navbar + ";"}<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;{"background-color: " + this.state.navbar + ";"}<br />
             {"}"}<br />
             {".left-sidebar {"}<br />
-            {"background-color: " + this.state.left_sidebar + ";"}<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;{"background-color: " + this.state.left_sidebar + ";"}<br />
             {"}"}<br />
             {".right-sidebar {"}<br />
-            {"background-color: " + this.state.right_sidebar + ";"}<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;{"background-color: " + this.state.right_sidebar + ";"}<br />
             {"}"}
 
           </Modal.Body>
@@ -263,6 +314,27 @@ class Layout1 extends React.Component {
       onChange={ this.handleChangeLeftSidebar } 
       color={ this.state.left_sidebar }
     />
+    <SketchPicker
+      className={this.state.navbarTextHidden ? "nav-color hide" : "nav-color"}
+      name="navbar-text"
+      hide-value={this.state.navbarTextHidden}
+      onChange={ this.handleNavText } 
+      color={ this.state.navbar_text }
+    />
+    <SketchPicker
+      className={this.state.leftSidebarTextHidden ? "nav-color hide" : "nav-color"}
+      name="left-text"
+      hide-value={this.state.leftSidebarTextHidden}
+      onChange={ this.handleLeftText } 
+      color={ this.state.left_sidebar_text }
+    />
+    <SketchPicker
+      className={this.state.mainTextHidden ? "nav-color hide" : "nav-color"}
+      name="main-text"
+      hide-value={this.state.mainTextHidden}
+      onChange={ this.handleMainText } 
+      color={ this.state.main_text }
+    />
     <nav 
       className="navbar layout-nav" 
       style={{backgroundColor: this.state.navbar}}
@@ -275,10 +347,22 @@ class Layout1 extends React.Component {
             <span className="icon-bar"></span>
             <span className="icon-bar"></span>                        
           </button>
-          <span className="navbar-brand black-text">Logo</span>
+          <span 
+            className="navbar-brand black-text" 
+            onClick={this.handleNavText}
+            style={{color: this.state.navbar_text}}
+          >
+            Logo
+          </span>
         </div>
-        <div className="collapse navbar-collapse" id="myNavbar">
-          <ul className="nav navbar-nav black-text">
+        <div className="collapse navbar-collapse" id="myNavbar" 
+          // onClick={this.handleNavText}
+        >
+          <ul 
+            className="nav navbar-nav black-text"
+            
+            style={{color: this.state.navbar_text}}
+          >
             <li className="list-items">Home</li>
             <li className="list-items">About</li>
             <li className="list-items">Projects</li>
@@ -296,18 +380,35 @@ class Layout1 extends React.Component {
           style={{backgroundColor: this.state.left_sidebar}}
           onClick={this.handleLeftClick}
         >
-          <p>Link</p>
-          <p>Link</p>
-          <p>Link</p>
-          <p>Link</p>
-          <p>Link</p>
+          <p 
+            // onClick={this.handleLeftText}
+            style={{color: this.state.left_sidebar_text}}>Link</p>
+          <p 
+            // onClick={this.handleLeftText}
+            style={{color: this.state.left_sidebar_text}}>Link</p>
+          <p 
+            // onClick={this.handleLeftText}
+            style={{color: this.state.left_sidebar_text}}>Link</p>
+          <p 
+            // onClick={this.handleLeftText}
+            style={{color: this.state.left_sidebar_text}}>Link</p>
+          <p 
+            // onClick={this.handleLeftText}
+            style={{color: this.state.left_sidebar_text}}>Link</p>
         </div>
         <div 
           className="col-sm-8 text-left"
           onClick={this.handleBackgroundClick}
           > 
-          <h1>Welcome</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <h1
+            // onClick={this.handleMainText}
+            style={{color: this.state.main_text}}
+          >
+            Welcome
+          </h1>
+          <p 
+            // onClick={this.handleMainText}
+            style={{color: this.state.main_text}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
         <div 
           className="col-sm-2 sidenav" 

@@ -7,6 +7,10 @@
 }
 
 .color-box-row {
+    margin-bottom: 35px;
+}
+
+.bottom-row {
     margin-bottom: 100px;
 }
 
@@ -24,11 +28,14 @@
 
 .logout-button {
     background: #eb6864;
+    color: white;
     width: 90px;
     text-align: center;
-    padding-top: 7px;
-    padding-bottom: 7px;
-    margin-top: 5px;
+    height: 43px;
+    /* padding-top: 5px;
+    padding-bottom: 5px; */
+    border: none;
+    /* margin-top: 5px; */
 }
 
 .color-scheme-button {
@@ -41,6 +48,17 @@
     margin-right: 15px;
 }
 
+.dropdown-menu {
+    background-color: #eb6864;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-right: 25px;
+    margin-top: 0px !important;
+    border-radius: 0px;
+}
+
 .dropdown-menu-style {
     background-color: #eb6864;
     color: white;
@@ -48,11 +66,19 @@
     font-size: 18px;
     font-family: Arial, Helvetica, sans-serif;
     margin-right: 25px;
-    margin-top: 0px;
+    margin-top: 0px !important;
     border-radius: 0px;
+}
+
+.dropdown-menu-style>li>.a:hover {
+    color: white;
 }
 
 .btn-group>.btn:first-child {
     margin-left: 0;
     margin-top: 0px;
+}
+
+.modal-css-1 {
+    text-align: left;
 }

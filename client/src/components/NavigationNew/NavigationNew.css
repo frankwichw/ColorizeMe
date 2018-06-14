@@ -1,5 +1,6 @@
-.dropdown-menu-style {
-    background-color: #eb6864;
+.dropdown-menu {
+    /* background-color: #eb6864; */
+    background-color: white;
     text-decoration: none;
     font-size: 18px;
     font-family: Arial, Helvetica, sans-serif;
@@ -8,6 +9,31 @@
     float: right;
 }
 
+.open>.dropdown-menu {
+    background-color: white;
+}
+
+.dropdown-menu>li>a {
+    color: #eb6864;
+}
+
+.dropdown-menu>li>a:hover {
+    background-color: #eb6864;
+    color: white !important;
+}
+
 .wrapper-div {
     display: inline-block;
+}
+
+.btn-group>.btn:first-child {
+    margin-top: 27px;
+    color: white;
+}
+
+@media only screen and (max-width: 767px) {
+    .btn-group>.btn:first-child {
+        margin-top: 0px;
+        margin-bottom: 20px;
+    }
 }

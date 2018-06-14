@@ -14,8 +14,10 @@
 
 .color-box-btn {
     border: none;
-    background-color: #b7b1a8;
-    color: #fff;
+    /* background-color: #b7b1a8; */
+    background-color: white;
+    color: #eb6864;
+    border: solid 1px #d7cec7;
     padding-right: 10px;
     padding-top: 6px;
     padding-left: 10px;
