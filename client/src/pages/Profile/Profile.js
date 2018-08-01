@@ -25,7 +25,6 @@ class Profile extends Component {
     this.renderData();
   }
 
-  
   renderData = () => {
     // get user data from local storage 
     const user = localStorage.getItem('userData');
@@ -190,6 +189,7 @@ class Profile extends Component {
         <button
             className="logout-button inline"
             onClick={this.logout}
+            style={{verticalAlign: 'top'}}
         >
         Logout
         </button>
